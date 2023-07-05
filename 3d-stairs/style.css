@@ -109,5 +109,6 @@ body {
     width: 300px;
     height: 100%;
     background: #a54bcf;
+    /* 注意这里的三个translate3d的三个值都可以计算出来,感兴趣的可以试试？ */
     transform: rotateY(90deg) translate3d(-150px,0,-90px);
 }
