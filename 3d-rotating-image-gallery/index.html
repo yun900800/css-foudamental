@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure CSS 3D Rotating Image Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="box">
+        <div style="--v:1;">
+            <img src="https://t7.baidu.com/it/u=1732966997,2981886582&fm=193&f=GIF"/>
+        </div>
+        <div style="--v:2;">
+            <img src="https://t7.baidu.com/it/u=1785207335,3397162108&fm=193&f=GIF"/>
+        </div>
+        <div style="--v:3;">
+            <img src="https://t7.baidu.com/it/u=3659156856,3928250034&fm=193&f=GIF"/>
+        </div>
+        <div style="--v:4;">
+            <img src="https://t7.baidu.com/it/u=3423293041,3900166648&fm=193&f=GIF"/>
+        </div>
+        <div style="--v:5;">
+            <img src="https://t7.baidu.com/it/u=3241434606,2550606435&fm=193&f=GIF"/>
+        </div>
+        <div style="--v:6;">
+            <img src="https://t7.baidu.com/it/u=1476844859,894832600&fm=193&f=GIF"/>
+        </div>
+        <div style="--v:7;">
+            <img src="https://t7.baidu.com/it/u=2238352429,1231172365&fm=193&f=GIF"/>
+        </div>
+        <div style="--v:8;">
+            <img src="https://t7.baidu.com/it/u=952579316,2833322615&fm=193&f=GIF"/>
+        </div>
+    </div>
+    <script>
+        const boxDivs = document.querySelectorAll('.box div');
+        boxDivs.forEach(item=>{
+            item.addEventListener('click',()=>{
+                boxDivs.forEach(item=>{
+                    item.classList.remove('spin');
+                });
+                item.classList.add('spin');
+            })
+        });
+    </script>
+</body>
+</html>
