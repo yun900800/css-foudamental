@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    min-height: 100vh;
+}
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) rotate(-45deg);
+}
+
+/* 注意这里height设置了值的话 会与默认的 box-sizing: border-box;冲突*/
+.pencil {
+    width: 400px;
+    height: 15px;
+    box-sizing:content-box;
+    background: #ffc334;
+    border-top: 10px solid #ffd268;
+    border-bottom: 10px solid #e2af38;
+}
+
+.pencil p {
+    text-align: center;
+    font-size: 8px;
+    line-height: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #d09200;
+}
+
+.pencil::before {
+    position: absolute;
+    content: '';
+    left:-80px;
+    top:0;
+    border-style: solid;
+    border-color: transparent #e29663 transparent transparent;
+    border-width: 17.5px 40px 17.5px;
+}
+
+.pencil::after {
+    position: absolute;
+    content: '';
+    left:-80px;
+    top:0;
+    border-style: solid;
+    border-color: transparent #262626 transparent transparent;
+    border-width: 17.5px 40px 17.5px;
+    transform: scale(0.3);
+}
+
+.top{
+    position: absolute;
+    top:0;
+    right: 0;
+    width: 30px;
+    height: 15px;
+    box-sizing:content-box;
+    background: #ccc;
+    border-top: 10px solid #dedede;
+    border-bottom: 10px solid #b9dfdf;
+}
+
+.top::before {
+    position: absolute;
+    content:'';
+    top: -10px;
+    right: -100%;
+    width: 150%;
+    height: 100%;
+    background: #d76f6e;
+    border-top: 10px solid #da8e8d;
+    border-bottom: 10px solid #c85957;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
