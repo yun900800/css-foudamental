@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.product {
+    width: 400px;
+    margin: 60px auto;
+    padding: 20px;
+    background: #f8f8f8;
+    text-align: center;
+}
+
+.product h2 {
+    margin: 0 0 20px;
+    background: #009625;
+    color: #fff;
+    padding: 10px;
+    
+    position: relative;
+    /* 一种居中的设计方法,同时这里的100%计算的宽度不包含父元素的padding,实际宽度只有360px */
+    width: calc(100% + 100px);
+    left: -50px;
+}
+
+.product p {
+    line-height: 1.5em;
+    letter-spacing: 0.1em;
+}
+
+.product h2::before {
+    content: '';
+    position: absolute;
+    
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: #009625 #009625 transparent transparent;
+    /* border-color: red green blue yellow; */
+    border-width: 15px;
+
+    left:0px;
+    bottom:-30px;
+}
+
+.product h2::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: #009625 transparent transparent #009625;
+    /* border-color: red green blue yellow; */
+    border-width: 15px;
+
+    right:0px;
+    bottom:-30px;
+}
