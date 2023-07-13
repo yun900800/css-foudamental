@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding:0 ; 
+    box-sizing: border-box;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    gap: 40px;
+}
+
+.clover {
+    position: relative;
+    
+}
+
+.leaves {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    background: transparent;
+    z-index: 1;
+}
+
+.leave {
+    display: block;
+    position: absolute;
+    width: 10px;
+    height: 16px;
+    background: #0f0;
+    border-radius: 5px 5px 0px 3px;
+    transform-origin: -2% 102%;
+    transform: rotate(-45deg);
+    left: 17px;
+    top: 1px;
+}
+
+.leave:after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 16px;
+    background: #0f0;
+    border-radius: 5px 5px 3px 0px;
+    transform-origin: 50% 100%;
+    transform: rotate(90deg) translate(-5px, 5px);
+}
+
+.angleN {
+    transform: rotate(-45deg);
+}
+.angleS {
+    transform: rotate(135deg);
+}
+.angleW {
+    transform: rotate(-135deg);
+}
+.angleE {
+    transform: rotate(45deg);
+}
+
+.leave-three {
+    display: block;
+    position: absolute;
+    width: 10px;
+    height: 12px;
+    background: #0f0;
+    border-radius: 5px 5px 0px 0px;
+    transform-origin: -2% 102%;
+    left: 17px;
+    top: 4px;
+}
+
+.leave-three::before {
+    content: '';
+    position: absolute;
+    top:0;
+    left:0;
+    width: 10px;
+    height: 12px;
+    background: #0f0;
+    border-radius: 5px 5px 0px 0px;
+    transform: rotate(120deg) translate(5px,8px);
+    transform-origin: 100% 100%;
+}
+
+.angle1 {
+    transform: rotate(0deg)
+}
+
+.angle2 {
+    transform: rotate(120deg)
+}
+
+.angle3 {
+    transform: rotate(2400deg)
+}
+
+.branch {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    left: 15px;
+    top: -4px;
+}
+
+.branch::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 50px;
+    border-bottom: 2px solid #219b21;
+    border-radius: 50px 50px 25px 150px;
+    left: 0;
+    top:-8px;
+}
