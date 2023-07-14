@@ -16,7 +16,7 @@ body {
 
 .glowing {
     position: relative;
-    width: 750px;
+    min-width: 750px;
     height: 750px;
     margin: -150px;
     transform-origin: right;
