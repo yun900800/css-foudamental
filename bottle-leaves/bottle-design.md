@@ -20,3 +20,10 @@
     同时理解border-radius: 10px 10px 20px 20px/10px;让bottle_inner形成下面平缓,上面陡峭的原理;理解border-radius八个值的原理。
     https://9elements.github.io/fancy-border-radius/
 6. 动画属性汇总:https://projects.verou.me/animatable/ , 线性渐变:https://gradient.style/
+
+7. water的设计还是采用了一个主元素构建一个长方形,然后::before和::after用border-radius和border构成椭圆来平滑水的上下边,这里有一点需要注意的是
+    上下边的宽度不一样,下面的宽度小一点,因为主元素不能构建最上方下端弧线,所以需要before和after;同时用box-shadow来设计水的内部阴影.水的主体使用了颜色的线性渐变.
+
+8. 气泡,和水母的设计都可以作为一个单独的小组件,然后将此组件通过定位放置到合适位置
+
+9. 叶子的构建前文说过,但是嵌入水中的叶子,这里使用了一个技巧,使用了两个层定位,然后使用index控制不同层并且配合两个不同高度的clover来显示,同时用overflow:hidden来控制leaves的部分,top和bottom合起来组成完整的leaves;同时动画也要配合默契.
