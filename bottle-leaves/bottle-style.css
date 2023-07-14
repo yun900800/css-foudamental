@@ -10,7 +10,6 @@
     align-items: center;
     min-height: 100vh;
     background: #ddd;
-
 }
 
 .bottle {
@@ -50,6 +49,8 @@
     border-top: none;
     border-bottom: none;
     margin: 0px auto;
+    transform: translate(0px,0px) rotate(0deg);
+    /* animation: open 2s linear alternate; */
 }
 
 .bottle_top::before , .bottle_top::after {
@@ -95,6 +96,22 @@
     top: -1px;
     transform: skew(0deg, 5deg);
     background: rgba(255, 255, 255, 0.3);
+}
+
+
+@keyframes open {
+    0% {
+        transform: translate(10px,-30px) rotate(0deg);
+    }
+    30% {
+        transform: translate(20px,-60px) rotate(30deg);
+    }
+    70% {
+        transform: translate(30px,-80px) rotate(60deg);
+    }
+    100% {
+        transform: translate(40px,-100px) rotate(90deg);
+    }
 }
 
 
