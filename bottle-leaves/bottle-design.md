@@ -18,4 +18,5 @@
     border-bottom-width: 0.5px;
 ```
     同时理解border-radius: 10px 10px 20px 20px/10px;让bottle_inner形成下面平缓,上面陡峭的原理;理解border-radius八个值的原理。
-6. 
+    https://9elements.github.io/fancy-border-radius/
+6. 动画属性汇总:https://projects.verou.me/animatable/ , 线性渐变:https://gradient.style/
