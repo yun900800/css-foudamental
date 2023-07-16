@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line Stripes Animation Effects</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <img src="https://www.clouding-ai.com/download1/pngs/animals/birds/birds_PNG106.png"  class="logo"></img>
+    <script>
+        function stripes() {
+            let sizeW =Math.random() * 3;
+            const e = document.createElement('div');
+            e.classList.add('lines');
+            e.style.left = Math.random() * innerWidth +'px';
+            e.style.width = 1 + sizeW+ 'px';
+            e.style.background = 'hsl('+Math.floor(Math.random()*360)+'deg, 100%,50%)';
+            document.body.appendChild(e);
+            setTimeout(()=>{
+                document.body.removeChild(e);
+            },2000);
+        }
+
+        setInterval(()=>{
+            stripes();
+        },20);
+    </script>
+</body>
+</html>
