@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainy Day</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+        <img id="background" alt="background" src="">
+    </section>
+    <script src="rainyday.js"></script>
+    <script>
+        function rain() {
+            const image = document.getElementById('background');
+            image.onload = function() {
+                var rainyday = new RainyDay({
+                    image: this,
+                    blur:10,
+                    fps:30
+                });
+                rainyday.rain([[5,2,2]],0);
+            }
+            image.src = "bg.jpg";
+        }
+        rain();
+    </script>
+</body>
+</html>
