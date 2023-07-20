@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Login and Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="user signinBx">
+                <div class="imgBx">
+                    <img src="https://t7.baidu.com/it/u=986208791,1567055894&fm=193&f=GIF">
+                </div>
+                <div class="formBx">
+                    <form>
+                        <h2>Sign In</h2>
+                        <input type="text" placeholder="UserName">
+                        <input type="password" placeholder="PassWord">
+                        <input type="submit" value="Login">
+                        <p class="signup">Don't have an account?<a href="#" onclick="toggleForm();">Sign Up.</a></p>
+                    </form>
+                </div>
+            </div>
+            <div class="user signupBx">
+                
+                <div class="formBx">
+                    <form>
+                        <h2>Create an account</h2>
+                        <input type="text" placeholder="UserName">
+                        <input type="text" placeholder="Email Address">
+                        <input type="password" placeholder="Create PassWord">
+                        <input type="password" placeholder="Confirm PassWord">
+                        <input type="submit" value="Sign Up">
+                        <p class="signup">Already't have a account?<a href="#" onclick="toggleForm();">Sign In.</a></p>
+                    </form>
+                </div>
+                <div class="imgBx">
+                    <img src="https://t7.baidu.com/it/u=2931491413,1199396761&fm=193&f=GIF">
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function toggleForm() {
+            const container = document.querySelector('.container');
+            const section = document.querySelector('section');
+            container.classList.toggle('active');
+            section.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

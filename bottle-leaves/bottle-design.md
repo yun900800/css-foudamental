@@ -20,6 +20,8 @@
     同时理解border-radius: 10px 10px 20px 20px/10px;让bottle_inner形成下面平缓,上面陡峭的原理;理解border-radius八个值的原理。
     https://9elements.github.io/fancy-border-radius/
 6. 动画属性汇总:https://projects.verou.me/animatable/ , 线性渐变:https://gradient.style/
+    服务端渲染框架nextjs;动画库gsap,AOS;声音处理库https://howlerjs.com/;免费声音资源:https://freesound.org/;处理音频的软件
+    https://www.audacityteam.org/
 
 7. water的设计还是采用了一个主元素构建一个长方形,然后::before和::after用border-radius和border构成椭圆来平滑水的上下边,这里有一点需要注意的是
     上下边的宽度不一样,下面的宽度小一点,因为主元素不能构建最上方下端弧线,所以需要before和after;同时用box-shadow来设计水的内部阴影.水的主体使用了颜色的线性渐变.
