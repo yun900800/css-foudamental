@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Pixel Image Animation Effects | Html CSS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="box">
+        <div id="pixel"></div>
+    </div>
+    <script>
+        let w = 30;
+        let h = 30;
+        function pixel() {
+            for (let i = 0 ; i< h; i++) {
+                for (let j = 0 ; j < w; j++) {
+                    let random= Math.random() * 1 ;
+                    let randomFix = random.toFixed(2);
+                    const span = document.createElement('span');
+                    document.getElementById('pixel').appendChild(span);
+                    span.style.left = j * 10 +'px';
+                    span.style.top = i * 10 +'px';
+                    span.style.backgroundPosition =  -j*10 +'px '+ -i*10+'px, center';
+                    span.style.animationDelay = randomFix+'s';
+                }
+            }
+        }
+        pixel();
+    </script>
+</body>
+</html>

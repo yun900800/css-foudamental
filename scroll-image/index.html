@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Background</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="banner">
+        <video autoplay muted loop>
+            <source src="bg.mp4" type="video/mp4">
+        </video>
+        <div id="bg"></div>
+    </div>
+    <script>
+        const bg = document.querySelector('#bg');
+        window.addEventListener('scroll',()=>{
+            let value = window.scrollY;
+            bg.style.backgroundSize = 100 + value * 2 +'px';
+        });
+    </script>
+</body>
+</html>
