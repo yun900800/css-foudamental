@@ -20,3 +20,7 @@
     - runner是运行任务的执行器
 
 2. 如何跳过CI的执行?在提交的信息中增加一个[skip ci]试试是否可行?
+
+3. 如何快速停止一个workflow,有一个disable workflow的按钮
+
+4. git merge master --allow-unrelated-histories没有历史记录的分支合并
