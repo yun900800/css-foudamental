@@ -33,3 +33,18 @@
     - git branch -m <branch> //删除分支(force)
     - git branch -a <branch> //重命名分支
 6. 如何将本地的分支推送到远程仓库?以及如何将不需要的branch在本地和远程删除?
+
+7. 如何理解git中的checkout
+    - checkout是一种在目标实体不同版本之间切换的行为,它主要对三种不同的实体进行操作:files,commits,branches
+    - checkout和clone的区别,前者工作在本地,后者适用于远程
+    - 如何checkout远程分支
+
+    ```shell
+    git fetch --all
+    git checkout ＜remotebranch＞
+    //old git version
+    git checkout -b ＜remotebranch＞ origin/＜remotebranch＞ 
+
+    git checkout -b ＜branchname＞
+    git reset --hard origin/＜branchname＞
+    ```
