@@ -32,3 +32,4 @@
     - git branch -D <branch> //删除分支
     - git branch -m <branch> //删除分支(force)
     - git branch -a <branch> //重命名分支
+6. 如何将本地的分支推送到远程仓库?以及如何将不需要的branch在本地和远程删除?
