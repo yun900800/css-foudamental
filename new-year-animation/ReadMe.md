@@ -26,3 +26,9 @@
     - git将分支存储为commit的引用,因此分支实际上是一些列commit的head
     - git branch可以看做是edit/stage/commit 过程的抽象
 
+5. git 常用的一些命令是:
+    - git branch
+    - git branch -d <branch> //创建一个分支
+    - git branch -D <branch> //删除分支
+    - git branch -m <branch> //删除分支(force)
+    - git branch -a <branch> //重命名分支
