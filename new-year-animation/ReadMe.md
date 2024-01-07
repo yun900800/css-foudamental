@@ -5,3 +5,5 @@
 1. git add ./ReadMe.md 将ReadMe.md文件从Working Tree 添加到 Staging Tree后 git restore --staged .\ReadMe.md
 
 2. git commit 的用法如下
+
+3. git restore 的用法如下
