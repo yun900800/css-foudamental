@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+.container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: #222;
+}
+
+.container input {
+    appearance: none;
+}
+
+.container .dots {
+    position: absolute;
+    bottom: 70px;
+    z-index: 10000;
+    /* 为什么使用了display以后 下面的label元素就有了宽度和高度 */
+    display: flex;
+    gap: 6px;
+}
+
+.container .dots label {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    opacity: 0.5;
+    border: 2px solid #222;
+}
+
+/* 这里的 ~ 选择器是选择input后的所有 .dots 元素 */
+.container input:nth-child(1):checked ~ .dots label:nth-child(1),
+.container input:nth-child(2):checked ~ .dots label:nth-child(2),
+.container input:nth-child(3):checked ~ .dots label:nth-child(3),
+.container input:nth-child(4):checked ~ .dots label:nth-child(4),
+.container input:nth-child(5):checked ~ .dots label:nth-child(5)
+{
+    opacity: 1;
+}
+
+.container .slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* 这里实际上是五层图片,最前一个在最上层 */
+.container .slider .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--img);
+    /* opacity属性是用作调试作用 */
+    /* opacity: 0; */
+    /* 理解background-size的意义 */
+    background-size: cover;
+    /* 半径为0,元素的左边中心为圆心进行扩展 */
+    clip-path: circle(0% at 0% 50%);
+    transition: 1.5s;
+    transition-delay: 0s;
+    /* 背景图片的初始位置可以在左边,右边,最终显示的时候一定在中心 */
+    background-position: left;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.container .slider .slide:nth-child(even){
+    clip-path: circle(0% at 100% 50%);
+    background-position: right;
+}
+
+.container input:nth-child(1):checked ~ .slider .slide:nth-child(1),
+.container input:nth-child(2):checked ~ .slider .slide:nth-child(2),
+.container input:nth-child(3):checked ~ .slider .slide:nth-child(3),
+.container input:nth-child(4):checked ~ .slider .slide:nth-child(4),
+.container input:nth-child(5):checked ~ .slider .slide:nth-child(5)
+{
+    /* opacity: 1; */
+    /* 以元素中心为圆心,半径的1.5倍扩展,实际的原理是扩散或者缩小当前元素，留下五层中最上面的元素进行相反的操作 */
+    clip-path: circle(150% at 50% 50%);
+    transition-delay: 1s;
+    background-position: center;
+}
+
+.content {
+    position: relative;
+    padding: 50px 50px 120px 80px;
+    max-width: 550px;
+}
+
+.content h2 {
+    color: #fff;
+    font-size: 3em;
+}
+.content p {
+    color: #fff;
+}

@@ -50,7 +50,7 @@
     border-bottom: none;
     margin: 0px auto;
     transform: translate(0px,0px) rotate(0deg);
-    /* animation: open 2s linear alternate; */
+    animation: open 2s linear alternate infinite;
 }
 
 .bottle_top::before , .bottle_top::after {
@@ -104,13 +104,17 @@
         transform: translate(10px,-30px) rotate(0deg);
     }
     30% {
-        transform: translate(20px,-60px) rotate(30deg);
+        transform: translate(60px,-60px) rotate(45deg);
+    }
+
+    50% {
+        transform: translate(120px,-100px) rotate(90deg);
     }
     70% {
-        transform: translate(30px,-80px) rotate(60deg);
+        transform: translate(60px,-60px) rotate(45deg);
     }
     100% {
-        transform: translate(40px,-100px) rotate(90deg);
+        transform: translate(0px,0px) rotate(0deg);
     }
 }
 
