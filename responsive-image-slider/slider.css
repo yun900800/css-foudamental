@@ -23,6 +23,7 @@
 
 .slider .slides {
     position: absolute;
+    /* slides 在sliderY轴中居中显示 */
     top: 50%;
     transform: translateY(-50%);
     width: 240px;
@@ -39,6 +40,7 @@
     align-items: flex-end;
 }
 
+/* 前两个元素占据全部的宽度和高度 */
 .slider .slides:nth-child(1),
 .slider .slides:nth-child(2) {
     position: absolute;
@@ -51,6 +53,7 @@
     background-size: cover; 
 }
 
+/* 后面的四个元素在水平方向上并排显示，然后通过js排序后使最前面的两个元素显示占据全部的父元素容器,从而起到slider的作用 */
 .slider .slides:nth-child(3) {
     left: calc(50% + 240px);
     background-size: cover;
