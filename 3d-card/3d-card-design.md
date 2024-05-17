@@ -98,3 +98,9 @@
         // 最后一个是最大透明度0.5,起到模糊的作用
         // 具体的链接请参考https://micku7zu.github.io/vanilla-tilt.js/
     ```
+
+4. 存在的疑问
+    - 是不是每个元素都要添加transform-style: preserve-3d; 这个属性?
+    - .container .box .buy 这个元素似乎可以不使用transition属性?
+    - 图片的最大宽度一定是父元素的宽度(是使用像素300px)吗?能不能使用 max-width:100%,似乎也是可以的，而且这样也统一.
+    - z-index的效果似乎不能覆盖掉图片的z轴移动的效果,这个是什么原因?
