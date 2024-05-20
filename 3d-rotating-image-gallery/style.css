@@ -36,7 +36,9 @@ body {
     height: 100%;
     transform-style: preserve-3d;
     transform-origin: center;
-    transform: rotateY(calc(45deg * var(--v))) translateZ(300px);
+    transform: rotateY(calc(45deg * var(--v)))
+    translateZ(300px)
+    ;
     -webkit-box-reflect: below 0px linear-gradient(transparent,transparent,#0004);
 }
 
@@ -48,18 +50,18 @@ body {
 }
 
 .spin {
-    animation: spin 2s linear infinite;
+    animation: spin 15s linear infinite;
 }
 
 @keyframes spin {
     0% {
         filter: hue-rotate(0deg);
-        transform: perspective(1500px) rotateY(0deg);
+        transform: perspective(1500px) rotateY(0deg) translateZ(500px);
         -webkit-box-reflect: below 0px linear-gradient(transparent,transparent,#0004);
     }
     100% {
         filter: hue-rotate(360deg);
-        transform: perspective(1500px) rotateY(360deg);
+        transform: perspective(1500px) rotateY(360deg) translateZ(500px);;
         -webkit-box-reflect: below 0px linear-gradient(transparent,transparent,#0004);
     }
 }
