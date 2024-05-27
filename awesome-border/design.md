@@ -17,9 +17,9 @@
 1. html主要部分包括
 
     ```html
-        body
-            .box
-                p
+            body
+                .box
+                    p
     ```
 
 2. css 部分基本原理
