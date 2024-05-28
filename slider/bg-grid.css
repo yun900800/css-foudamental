@@ -1,0 +1,59 @@
+.bg-grid {
+    margin-top: 2rem;
+    position: relative;
+    width: 720px;
+    height: 400px;
+    padding: 120px;
+    padding-top: 72px;
+    background-color: #f1d7d7;
+    background-image: linear-gradient(#5ff037 1px, transparent 0);
+    background-size: 28px 28px, 28px 28px;
+    background-position: center;
+    border-radius: 33% 67% 54% 46% / 30% 32% 68% 70%;
+    opacity: 0.625;
+    font-size: 1rem;
+    caret-color: rgb(66, 5, 17);
+}
+ 
+/* .bg-grid:before,
+.bg-grid:after{
+    content: '';
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    background-color: #fff;
+    height: 28px;
+    box-shadow: 68px 0 0 0 #fff, 
+                calc(68px * 2) 0 0 0 #fff, 
+                calc(68px * 3) 0 0 0 #fff, 
+                calc(68px * 4) 0 0 0 #fff, 
+                calc(68px * 5) 0 0 0 #fff, 
+                -68px 0 0 0 #fff, 
+                calc(68px * -2) 0 0 0 #fff, 
+                calc(68px * -3) 0 0 0 #fff, 
+                calc(68px * -4) 0 0 0 #fff, 
+                calc(68px * -5) 0 0 0 #fff;
+}
+.bg-grid:before {
+    top: 0;
+    width: 10px;
+}
+ 
+.bg-grid:after {
+    top: 26px;
+    width: 28px;
+    border-radius: 50%;
+} */
+
+textarea {
+    border: 0;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    appearance: none;
+    /* width: 100%; */
+    resize: none;
+    background: none;
+}

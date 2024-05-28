@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+* {
+    line-height: 1.5;
+}
+
 body {
     background: #111;
 }
@@ -88,13 +92,13 @@ header .toggle {
 }
 
 .slider  .imgBx .content h2 {
-    font-size: 6em;
-    line-height: 1em;
+    font-size: 4em;
+    /* line-height: 1em; */
     color: #fff;
 }
 
 .slider  .imgBx .content p {
-    font-size: 1.1em;
+    font-size: 2em;
     color: #fff;
 }
 
