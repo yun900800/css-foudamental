@@ -6,7 +6,7 @@
 
 .main {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     min-height: 100vh;
     background: #ddd;
@@ -16,7 +16,7 @@
 .bottle {
     position: relative;
     width: 240px;
-    margin-top: 120px;
+    margin: 90px 0px;
 }
 
 .bottle::after {
@@ -40,7 +40,7 @@
     display: block;
     height: 14px;
     width: 100px;
-    border-radius: 46px/10px;
+    border-radius: 46px / 10px;
     box-shadow: 0px 2px 10px -2px rgba(0, 204, 255, 0.3), 0px 2px 15px -2px rgba(0, 204, 255, 0.4);
     position: absolute;
     bottom: -7.6px;
@@ -56,7 +56,7 @@
     border-bottom: none;
     margin: 0px auto;
     transform: translate(0px,0px) rotate(0deg);
-    animation: open 2s linear alternate infinite;
+    /* animation: open 2s linear alternate infinite; */
 }
 
 .bottle_top::before , .bottle_top::after {
@@ -110,14 +110,14 @@
         transform: translate(10px,-30px) rotate(0deg);
     }
     30% {
-        transform: translate(60px,-60px) rotate(45deg);
+        transform: translate(60px,-60px) rotate(35deg);
     }
 
     50% {
         transform: translate(120px,-100px) rotate(90deg);
     }
     70% {
-        transform: translate(60px,-60px) rotate(45deg);
+        transform: translate(60px,-60px) rotate(35deg);
     }
     100% {
         transform: translate(0px,0px) rotate(0deg);
