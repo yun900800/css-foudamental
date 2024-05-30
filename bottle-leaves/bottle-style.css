@@ -4,6 +4,13 @@
     /* box-sizing: border-box; */
 }
 
+body {
+    /* 定义瓶子的宽度 */
+    --bottle-main-width: 150px;
+    --bottle-top-width: calc(var(--bottle-main-width) - 20px);
+    --bottle-neck-width: calc(var(--bottle-main-width) - 38px)
+}
+
 .main {
     display: flex;
     justify-content: space-evenly;
@@ -26,7 +33,8 @@
     position: absolute;
     display: block;
     height: 14px;
-    width: 100px;
+    /* width: 100px; */
+    width: var(--bottle-main-width);
     border-radius: 46px / 10px;
     box-shadow: 0px 1px 4px -2px rgba(0, 0, 0, 0.2), 0px 2px 10px -3px rgba(0, 0, 0, 0.1);
     bottom: -7.6px;
@@ -39,7 +47,8 @@
     content: '';
     display: block;
     height: 14px;
-    width: 100px;
+    /* width: 100px; */
+    width: var(--bottle-main-width);
     border-radius: 46px / 10px;
     box-shadow: 0px 2px 10px -2px rgba(0, 204, 255, 0.3), 0px 2px 15px -2px rgba(0, 204, 255, 0.4);
     position: absolute;
@@ -49,7 +58,8 @@
 
 .bottle_top {
     height: 30px;
-    width: 80px;
+    /* width: 80px; */
+    width: var(--bottle-top-width);
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-top: none;
@@ -63,7 +73,8 @@
     content: '';
     position: absolute;
     height: 10px;
-    width: 78px;
+    /* width: 78px; */
+    width: calc(var(--bottle-top-width) - 2px);
     border-radius: 46px/10px;
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-bottom: 2px solid rgba(255, 255, 255, 0.6);
@@ -127,7 +138,8 @@
 
 .bottle_mouth {
     height: 52px;
-    width: 44px;
+    /* width: 44px; */
+    width: calc( var(--bottle-top-width) - 36px);
     margin: 0px auto;
     position: relative;
     /* 以上四行代码是一种相对定位居中的方式 */
@@ -143,7 +155,8 @@
     content: '';
     display: block;
     height: 6px;
-    width: 44px;
+    /* width: 44px; */
+    width: calc( var(--bottle-top-width) - 36px);
     border-radius: 25px/6px;
     /* 注意这里的第二个参数值刚好是元素的高度值 */
     border: 1px solid rgba(255, 255, 255, 0.4);
@@ -157,7 +170,8 @@
 
 .bottle_neck {
     height: 20px;
-    width: 62px;
+    /* width: 62px; */
+    width: var(--bottle-neck-width);
     position: relative;
     background: none;
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -170,7 +184,8 @@
     content: '';
     display: block;
     height: 8px;
-    width: 62px;
+    /* width: 62px; */
+    width: var(--bottle-neck-width);
     border-radius: 30px/8px;
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-top: none;
@@ -204,7 +219,8 @@
 .bottle_main {
     height: 150px;
     position: relative;
-    width: 98px;
+    /* width: 98px; */
+    width: calc(var(--bottle-main-width) - 2px);
     background: none;
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-top: none;
@@ -216,7 +232,8 @@
     content: '';
     display: block;
     height: 12px;
-    width: 96px;
+    /* width: 96px; */
+    width: calc(var(--bottle-main-width) - 4px);
     border-radius: 46px/10px;
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-bottom: 2px solid rgba(255, 255, 255, 0.7);
@@ -294,7 +311,8 @@
     content: '';
     display: block;
     height: 10px;
-    width: 88px;
+    /* width: 88px; */
+    width: 100%;
     position: absolute;
     left: -1px;
     top: 0px;
@@ -308,7 +326,8 @@
     content: '';
     display: block;
     height: 10px;
-    width: 82px;
+    /* width: 82px; */
+    width: 98%;
     position: absolute;
     left: 2px;
     bottom: -1px;
