@@ -7,8 +7,17 @@
 body {
     /* 定义瓶子的宽度 */
     --bottle-main-width: 150px;
-    --bottle-top-width: calc(var(--bottle-main-width) - 20px);
-    --bottle-neck-width: calc(var(--bottle-main-width) - 38px)
+    --bottle-top-width: calc(var(--bottle-main-width) - 40px);
+    --bottle-neck-width: calc(var(--bottle-main-width) - 58px);
+
+    /* 定义瓶子的高度 */
+    --bottle-main-height: 150px;
+    --bottle-top-height: 30px;
+    --bottle-neck-height: 20px;
+    --bottle-mouse-height: 58px;
+
+    /* 定义水的高度 */
+    --water-height: 100px;
 }
 
 .main {
@@ -57,7 +66,8 @@ body {
 }
 
 .bottle_top {
-    height: 30px;
+    /* height: 30px; */
+    height: var(--bottle-top-height);
     /* width: 80px; */
     width: var(--bottle-top-width);
     position: relative;
@@ -95,7 +105,8 @@ body {
 
 .bottle_top .highlight {
     display: block;
-    height: 30px;
+    /* height: 30px; */
+    height: var(--bottle-top-height);
     width: 20px;
     position: absolute;
     left: 5px;
@@ -106,7 +117,8 @@ body {
 .bottle_top .highlight:after {
     content: '';
     display: block;
-    height: 30px;
+    /* height: 30px; */
+    height: var(--bottle-top-height);
     width: 2px;
     position: absolute;
     left: -3px;
@@ -138,6 +150,7 @@ body {
 
 .bottle_mouth {
     height: 52px;
+    height: var(--bottle-mouse-height);
     /* width: 44px; */
     width: calc( var(--bottle-top-width) - 36px);
     margin: 0px auto;
@@ -170,6 +183,7 @@ body {
 
 .bottle_neck {
     height: 20px;
+    height: var(--bottle-neck-height);
     /* width: 62px; */
     width: var(--bottle-neck-width);
     position: relative;
@@ -217,7 +231,8 @@ body {
 
 
 .bottle_main {
-    height: 150px;
+    /* height: 150px; */
+    height: var(--bottle-main-height);
     position: relative;
     /* width: 98px; */
     width: calc(var(--bottle-main-width) - 2px);
@@ -252,7 +267,8 @@ body {
 
 .bottle_main .highlight {
     display: block;
-    height: 150px;
+    /* height: 150px; */
+    height: var(--bottle-main-height);
     width: 25px;
     position: absolute;
     left: 10px;
@@ -264,7 +280,8 @@ body {
 .bottle_main .highlight:after {
     content: '';
     display: block;
-    height: 150px;
+    /* height: 150px; */
+    height: var(--bottle-main-height);
     width: 4px;
     position: absolute;
     left: -6px;
@@ -275,7 +292,7 @@ body {
 
 
 .bottle_inner {
-    height: 149px;
+    height: calc(var(--bottle-main-height) - 1px);
     width: 92%;
     margin: 0px auto;
     border-radius: 10px 10px 20px 20px/10px;
@@ -300,6 +317,7 @@ body {
 .water {
     background: linear-gradient(-85deg, rgba(0, 204, 255, 0.35), rgba(0, 173, 216, 0.55) 70%, rgba(0, 173, 216, 0.4));
     height: 80px;
+    height: var(--water-height);
     width: 98%;
     position: absolute;
     left: 1px;
@@ -395,7 +413,9 @@ body {
         border-color: rgba(255, 255, 255, 0.25);
     }
     100% {
-        transform: translate(0px, -67px) scale(1.4);
+        
+        /* transform: translate(0px, -107px) scale(1.4); */
+        transform: translate(0px, calc(13px - var(--water-height))) scale(1.4);
         opacity: 0;
         border-color: rgba(255, 255, 255, 0.1);
     }
