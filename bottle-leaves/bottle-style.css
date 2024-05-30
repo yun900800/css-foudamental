@@ -10,14 +10,18 @@
     align-items: center;
     min-height: 100vh;
     background: #ddd;
+    flex-wrap: wrap;
 }
 
 .bottle {
     position: relative;
-    width: 100px;
+    width: 240px;
+    margin-top: 120px;
 }
 
 .bottle::after {
+    left: 50%;
+    transform: translateX(-50%);
     content: '';
     position: absolute;
     display: block;
@@ -30,6 +34,8 @@
 }
 
 .bottle:before {
+    left: 50%;
+    transform: translateX(-50%);
     content: '';
     display: block;
     height: 14px;
@@ -203,6 +209,7 @@
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-top: none;
     border-bottom: none;
+    margin: 0 auto;
 }
 .bottle_main:after,
 .bottle_main:before {
