@@ -9,3 +9,6 @@
 4. 自定义字体
 
 ## 具体请参考[这篇文章](https://www.digitalocean.com/community/tutorials/how-to-load-and-use-custom-fonts-with-css)
+
+
+1. [font-icon使用](https://gomakethings.com/icon-fonts/)

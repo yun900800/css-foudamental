@@ -29,3 +29,44 @@
 8. 气泡,和水母的设计都可以作为一个单独的小组件,然后将此组件通过定位放置到合适位置
 
 9. 叶子的构建前文说过,但是嵌入水中的叶子,这里使用了一个技巧,使用了两个层定位,然后使用index控制不同层并且配合两个不同高度的clover来显示,同时用overflow:hidden来控制leaves的部分,top和bottom合起来组成完整的leaves;同时动画也要配合默契.
+
+## 这个瓶子的基本情况分析
+
+1. html 结构分析
+
+    ```html
+    .main 
+        .bottle
+            .bottle_top
+                .bottle_mouth
+                .highlight
+            .bottle_neck
+                .highlight
+            .bottle_main
+                .bottle_inner
+                    .water 
+                        .cloverTop
+                            .clover
+                                .leaves
+                                    .leave angleN
+                                    .leave angleS
+                                    .leave angleW
+                                    .leave angleE
+                                .branch
+                        .cloverBottom
+                            <!-- 与 cloverTop 类似-->
+                        .jellyfish
+                            .jellyfish_head
+                            .jellyfish_tail
+                                .jellyfish_tail_in
+                        .bubble bubble1
+                        .bubble bubble1
+                        .bubble bubble1
+                .highlight
+    ```
+
+
+
+### 原理讲解
+
+1. [原理链接](https://blog.csdn.net/jiajieao/article/details/45332059)
