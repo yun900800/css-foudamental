@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Mode Toggle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="transition-colors duration-300">
+    <div class="min-h-screen flex flex-col items-center justify-center bg-white text-black dark:bg-gray-900 dark:text-white">
+        <button id="theme-toggle" class="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-lg">
+            Toggle Dark Mode
+        </button>
+    </div>
+
+    <script>
+        const toggleButton = document.getElementById('theme-toggle');
+        const root = document.documentElement;
+
+        // 检查本地存储中的主题
+        if (localStorage.getItem('theme') === 'dark') {
+            root.classList.remove('dark');
+        } else {
+            root.classList.remove('dark');
+        }
+
+        // 切换主题
+        toggleButton.addEventListener('click', () => {
+            if (root.classList.contains('dark')) {
+                root.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                root.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>

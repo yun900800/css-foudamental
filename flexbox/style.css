@@ -1,0 +1,33 @@
+body {
+    min-height: 100vh;
+    display: grid;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    
+    /* 这个是选择所有父级元素是form，子集是input的元素 */
+    & > input {
+      flex: 1 1 10ch;
+      margin: .5rem;
+      
+      &[type="email"] {
+        flex: 3 1 30ch;
+      }
+    }
+}
+  
+input {
+    border: none;
+    background: hsl(0 0% 93%);
+    border-radius: .25rem;
+    padding: .75rem 1rem;
+    
+    &[type="submit"] {
+      background: hotpink;
+      color: white;
+      box-shadow: 0 .75rem .5rem -.5rem hsl(0 50% 80%);
+    }
+}
