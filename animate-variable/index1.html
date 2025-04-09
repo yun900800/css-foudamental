@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Animated Gradient with CSS Variables</title>
+  <style>
+    :root {
+      --angle: 0deg;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #000;
+      font-family: sans-serif;
+    }
+
+    .box {
+      width: 300px;
+      height: 300px;
+      border-radius: 20px;
+      background: linear-gradient(var(--angle), red, orange, yellow, green, blue, indigo, violet);
+      animation: spinGradient 5s linear infinite;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    }
+
+    @keyframes spinGradient {
+      0% {
+        --angle: 0deg;
+      }
+      100% {
+        --angle: 360deg;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+</body>
+</html>

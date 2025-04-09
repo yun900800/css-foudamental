@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dreamy Animated Gradient</title>
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .magic-box {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      border-radius: 24px;
+      background: #111;
+      z-index: 1;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    }
+
+    .magic-box::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(
+        from 0deg,
+        red,
+        orange,
+        yellow,
+        green,
+        blue,
+        indigo,
+        violet,
+        red
+      );
+      animation: spin 6s linear infinite;
+      filter: blur(60px);
+      opacity: 0.6;
+      z-index: -1;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .magic-box::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: inherit;
+      border-radius: 24px;
+      z-index: 2;
+      pointer-events: none;
+      mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+      -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+    }
+  </style>
+</head>
+<body>
+  <div class="magic-box"></div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>响应式布局示例</title>
+</head>
+<body class="bg-gray-100 p-4">
+    <div class="container mx-auto">
+        <!-- <header class="bg-white-500 rounded-lg mb-4 flex justify-end items-center p-4 shadow-md gap-4">
+            <menu class="mx-auto border border-transparent hover:border-blue-300 hover:cursor-pointer p-2 rounded-lg min-w-12">logo</menu>
+            <menu class="grow-0 shrink-1 basis-8 border border-transparent hover:border-blue-300 hover:cursor-pointer p-2 rounded-lg">product</menu>
+            <menu class="grow-0 shrink-1 basis-8 border border-transparent hover:border-blue-300 hover:cursor-pointer p-2 rounded-lg">contact</menu>
+        </header> -->
+        <!-- 导航菜单 -->
+    <nav class="bg-blue-500 p-4">
+        <div class="container mx-auto">
+            <ul class="flex space-x-12">
+                <!-- 主菜单项 -->
+                <li class="text-white group relative min-w-max">
+                    <a href="#" class="hover:text-gray-300 px-6 py-2">主页</a>
+                    <!-- 子菜单 -->
+                    <ul class="absolute left-0 hidden group-hover:block bg-blue-400 text-white p-2 space-y-2">
+                        <li><a href="#" class="hover:text-gray-300">子菜单 1</a></li>
+                        <li><a href="#" class="hover:text-gray-300">子菜单 2</a></li>
+                    </ul>
+                </li>
+                <li class="text-white group relative min-w-max">
+                    <a href="#" class="hover:text-gray-300 px-6 py-2">关于</a>
+                    <ul class="absolute left-0 hidden group-hover:block bg-blue-400 text-white p-2 space-y-2">
+                        <li><a href="#" class="hover:text-gray-300">子菜单 1</a></li>
+                        <li><a href="#" class="hover:text-gray-300">子菜单 2</a></li>
+                    </ul>
+                </li>
+                <li class="text-white group relative min-w-max">
+                    <a href="#" class="hover:text-gray-300 px-6 py-2">服务</a>
+                    <ul class="absolute left-0 hidden group-hover:block bg-blue-400 text-white p-2 space-y-2">
+                        <li><a href="#" class="hover:text-gray-300">子菜单 1</a></li>
+                        <li><a href="#" class="hover:text-gray-300">子菜单 2</a></li>
+                    </ul>
+                </li>
+                <li class="text-white min-w-max">
+                    <a href="#" class="hover:text-gray-300 px-6 py-2">联系我们</a>
+                </li>
+            </ul>
+
+            <!-- 手机菜单按钮 -->
+            <button class="lg:hidden text-white mt-4">菜单</button>
+        </div>
+    </nav>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            <div class="bg-blue-500 text-white p-6 rounded-lg shadow-md">栏目 1</div>
+            <div class="bg-green-500 text-white p-6 rounded-lg shadow-md">栏目 2</div>
+            <div class="bg-red-500 text-white p-6 rounded-lg shadow-md">栏目 3</div>
+        </div>
+    </div>
+</body>
+</html>
