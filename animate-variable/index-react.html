@@ -1,0 +1,52 @@
+<html>
+  <body>
+    <div id="app"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel Script -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/jsx">
+      const domNode = document.getElementById('app');
+      const root = ReactDOM.createRoot(domNode);
+      function createTitle(title) {
+        if (title) {
+          return title;
+        } else {
+          return 'Default title';
+        }
+      }
+      function Header({title}) {
+        return <>
+                <h1>this is a {title} Title</h1>
+                <h2>{createTitle(title)}</h2>
+                <h3>{title ? title : 'Default Title'}</h3>
+                <h4>{`Cool Perfect ${title}`}</h4>
+               </>;
+      }
+      function HomePage() {
+        const [likes, setLikes] = React.useState(0);
+        const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+        function handleClick() {
+            setLikes(likes + 1);
+            console.log("increment like count")
+        }
+        return (
+          <div>
+            {/* Nesting the Header component */}
+            <Header  title="react"/>
+            <Header  title="redis"/>
+            <p>Welcome to the homepage!</p>
+            <p>Here you can find various resources and information.</p>
+            <ul>
+                {names.map((name) => (
+                  <li key={name}>{name}</li>
+                ))}
+            </ul>
+            <button onClick={handleClick}>Like ({likes})</button>
+          </div>
+        );
+      }
+      root.render(<HomePage />);
+    </script>
+  </body>
+</html>

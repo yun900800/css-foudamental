@@ -1,0 +1,17 @@
+.parent {
+    border: 1px solid black;
+    background-color: #f4f4f4;
+    /* overflow: hidden; */
+}
+
+.float-child {
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-color: lightblue;
+    margin-right: 10px;
+}
+
+.clearfix {
+    clear: both; /* 使其清除浮动 */
+}

@@ -1,0 +1,23 @@
+.parent {
+    border: 1px solid black;
+}
+
+.float-left {
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-color: lightblue;
+}
+
+.float-right {
+    float: right;
+    width: 100px;
+    height: 50px;
+    background-color: lightgreen;
+}
+
+.clearfix {
+    clear: right;
+    background-color: lightcoral;
+    height: 40px;
+}
