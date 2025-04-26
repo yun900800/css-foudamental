@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inline-Flex 基本用法</title>
+    <problem>为什么能够垂直对齐</problem>
+    <style>
+        .text-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            line-height: 2.5; /* 为了更明显看到垂直对齐 */
+        }
+
+        .icon-group {
+            display: inline-flex; /* 关键：容器本身是行内级，内容是弹性布局 */
+            border: 1px dashed blue; /* 方便观察容器的范围 */
+            padding: 0 5px;
+            background-color: #f0f0f0;
+
+            /* 以下元素是为了让我们更容易看到这里的对齐方式是 
+                案例中图标的垂直对齐感，
+                主要是内部 align-items: center; 
+                和外部默认 vertical-align: baseline;
+             */
+            /* height: 150px; */ 
+
+            /* 内部弹性布局设置 */
+            /* flex-direction: column; */
+            align-items: center; /* 子元素在交叉轴（垂直方向）上居中 */
+            justify-content: center; /* 子元素在主轴（水平方向）上居中 */
+            gap: 5px; /* 子元素之间的间隔 */
+        }
+
+        .icon-group span {
+            font-size: 18px;
+            /* 其他子元素样式 */
+        }
+    </style>
+</head>
+<body>
+
+<div class="text-container">
+    这是一段普通的文本，中间嵌入了
+    <div class="icon-group">
+        <span>⭐</span>
+        <span>🎉</span>
+        <span>👍</span>
+    </div>
+    一组表情图标，可以看到图标组整体作为行内元素，和文本排在了一行，而图标组内部的图标使用了flex布局进行
+    <div class="icon-group">
+        <span>⭐</span>
+        <span>🎉</span>
+        <span>👍</span>
+    </div>
+    了排列和对齐。
+</div>
+
+</body>
+</html>

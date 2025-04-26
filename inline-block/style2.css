@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.item {
+    display: inline-block;
+    width: 30%;
+    height: 150px;
+    background-color: lightgreen;
+    margin-right: 5%;
+    text-align: center;
+    line-height: 150px;
+}
+
+.item:last-child {
+    margin-right: 0;
+    background-color: lightcoral;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inline-Flex 奇妙用法 - Tag</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        .tags-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            line-height: 2; /* 为了更明显看到标签与文本的垂直对齐 */
+        }
+
+        .tag {
+            display: inline-flex; /* 关键：标签整体是行内级，可以和文字排一起 */
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            padding: 4px 8px;
+            margin: 2px; /* 标签之间的间距 */
+            font-size: 0.9em;
+
+            /* 内部弹性布局设置 */
+            align-items: center; /* 内容（文本和按钮）垂直居中 */
+            gap: 5px; /* 文本和按钮之间的间隔 */
+            vertical-align: middle; /* 让标签整体与周围文本的垂直对齐方式 */
+        }
+
+        .tag-text {
+            /* 标签文字样式 */
+        }
+
+        .tag-close {
+            cursor: pointer;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: #555;
+            /* 其他关闭按钮样式 */
+        }
+    </style>
+</head>
+<body>
+
+<div class="tags-container">
+    这里是一些关键词标签:
+    <div class="tag">
+        <span class="tag-text">CSS</span>
+        <span class="tag-close">X</span>
+    </div>
+    <div class="tag">
+        <span class="tag-text">Flexbox Layout</span>
+        <span class="tag-close">X</span>
+    </div>
+    <div class="tag">
+        <span class="tag-text">Inline-Flex Property</span>
+        <span class="tag-close">X</span>
+    </div>
+    这些标签都作为行内元素，排布在了同一行中，并且标签内部的文字和关闭按钮也对齐了。
+</div>
+
+</body>
+</html>

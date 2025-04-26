@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>边距折叠示例</title>
+  <style>
+    .container {
+      border: 1px solid #000;
+      padding: 20px;
+      display: flow-root; /* 使用 flow-root 来防止边距折叠 */
+    }
+    .item {
+      margin-top: 30px; /* 给第一个子元素设置顶部外边距 */
+      background-color: lightcoral;
+      height: 100px;
+    }
+    .text {
+      margin-top: 50px; /* 给文本元素设置顶部外边距 */
+      background-color: lightyellow;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="item"></div>
+    <div class="text"></div>
+  </div>
+</body>
+</html>

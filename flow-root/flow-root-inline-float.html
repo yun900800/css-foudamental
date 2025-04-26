@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>内联浮动元素</title>
+  <style>
+    .container {
+      display: flow-root; /* 使用 flow-root 来包裹浮动元素 */
+      border: 2px solid #333;
+      padding: 10px;
+    }
+    .item {
+      float: left;
+      width: 50%;
+      height: 100px;
+      background-color: salmon;
+      /* margin-right: 10px; */
+    }
+    .item:last-child {
+      background-color: lightgreen;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
+</body>
+</html>

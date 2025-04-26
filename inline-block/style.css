@@ -1,0 +1,13 @@
+.container {
+    text-align: center; /* 居中整个容器 */
+}
+
+.box {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: lightblue;
+    margin: 10px;
+    text-align: center;
+    line-height: 100px; /* 垂直居中 */
+}

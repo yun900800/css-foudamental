@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>display:contents 演示卡片布局</title>
+  <style>
+    .card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card-container .card {
+  background: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  width: 200px;
+  height: 150px;
+  box-sizing: border-box;
+  /* display: contents;  */
+  outline: 4px solid rgba(0, 0, 0, 0.1);
+  /* Key point! */
+}
+
+.card-container .card:hover {
+  background: #e0e0e0;
+  outline: 6px solid rgba(0, 0, 0, 0.3); 
+}
+
+.card h2 {
+  color: #333;
+}
+
+.card p {
+  font-size: 14px;
+  color: #666;
+}
+
+
+.menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  display: contents; /* Makes this item disappear but keep its children */
+}
+
+.submenu {
+  display: none; /* Initially hide the submenu */
+  padding-left: 20px;
+}
+
+.menu-item:hover .submenu {
+  display: block;
+  background: lightgray;
+}
+
+
+.background-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background-color: lightblue;
+  overflow: hidden;
+}
+
+.overlay {
+  display: contents; /* Makes this element disappear but keep its children */
+}
+
+.content {
+  background-color: white;
+  color: #333;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  text-align: center;
+}
+
+
+.button-container {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #6200ea;
+  color: white;
+  border: 2px solid transparent;  /* 默认为透明边框 */
+  border-radius: 5px;
+  outline: none;  /* 不显示默认的 outline */
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  border-color: #ff4081;  /* 鼠标悬停时显示 border */
+  outline: 5px solid rgba(255, 64, 129, 0.5);  /* 鼠标悬停时用 outline 强调 */
+}
+
+button:active {
+  border-color: #ff4081;
+  background-color: #3700b3;
+  outline: none;  /* 按下按钮时不显示 outline */
+}
+
+
+
+  </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="card">
+          <h2>Card Title</h2>
+          <p>This is some content inside the card. It will overflow outside of the card container.</p>
+        </div>
+        <div class="card">
+          <h2>Another Card</h2>
+          <p>This is some more content inside a card.</p>
+        </div>
+    </div>
+      
+    <nav>
+        <ul class="menu">
+          <li class="menu-item">Home</li>
+          <li class="menu-item">About
+            <ul class="submenu">
+              <li>Team</li>
+              <li>Company</li>
+            </ul>
+          </li>
+          <li class="menu-item">Services</li>
+        </ul>
+      </nav>
+      
+
+      <div class="background-container">
+        <div class="overlay">
+            <h1>Overlay Title</h1>
+            <p>This is some overlay content.</p>
+            <p>It will be positioned absolutely within the background container.</p>
+            <p>It will not affect the layout of the other elements.</p>
+        </div>
+        <div class="content">Main Content</div>
+      </div>
+
+      <div class="button-container">
+        <button>Click Me!</button>
+        <button>Another Button</button>
+        <button>More Buttons</button>   
+    </div>
+</body>
+</html>

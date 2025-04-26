@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inline-Flex 奇妙用法 - Vertical Align</title>
+    <style>
+        body {
+            font-size: 16px; /* 默认字体大小 */
+        }
+        .text-block {
+            border: 1px solid #ddd;
+            padding: 10px;
+            line-height: 1.2; /* 增加行高以便观察 */
+        }
+
+        .large-icon-container {
+            display: inline-flex; /* 容器本身是行内级 */
+            width: 30px; /* 设置容器宽度 */
+            height: 30px; /* 设置容器高度 */
+            border: 1px dashed red; /* 观察容器范围 */
+
+            /* 内部弹性布局，用来垂直居中子元素 */
+            align-items: center; /* 子元素垂直居中 */
+            justify-content: center; /* 子元素水平居中 */
+
+            vertical-align: middle; /* 关键：让 inline-flex 容器整体与周围文本垂直居中 */
+        }
+
+        .large-icon-container span {
+            font-size: 24px; /* 图标比周围文本大 */
+        }
+
+        /* 对比：使用 inline-block */
+        .large-icon-inline-block {
+             display: inline-block;
+             width: 30px;
+             height: 30px;
+             border: 1px dashed green;
+             text-align: center; /* 只能水平居中 */
+             line-height: 30px; /* 尝试用行高垂直居中，但可能不准 */
+             vertical-align: middle; /* 容器本身与周围文本对齐 */
+        }
+         .large-icon-inline-block span {
+            font-size: 24px;
+         }
+
+
+    </style>
+</head>
+<body>
+
+<div class="text-block">
+    这是一段包含一个大图标的文本。使用 inline-flex:
+    <div class="large-icon-container">
+        <span>😊</span>
+    </div>
+    可以看到图标在容器内居中，且容器整体与文本中线对齐。 <br><br>
+    对比使用 inline-block 的方式 (内部垂直对齐依赖行高，可能不准确):
+     <div class="large-icon-inline-block">
+        <span>😊</span>
+    </div>
+    这种方法内部对齐不如 flex 灵活准确。
+</div>
+
+</body>
+</html>

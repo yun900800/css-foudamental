@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    background-color: #f08fe8;
+
+}
+.item {
+    /* inline元素对于width和height是无效的 */
+    width: 100px;
+    height: 100px;
+    margin: 10px; /* Space between items margin has effect */
+    padding: 10px; /* Space inside items padding has no effect */
+    border: 1px solid #2e45c5;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+
+    line-height: 51px; 
+    /* Center text vertically */
+    font-size: 20px;
+    outline: 2px solid #07db35;
+}
+
+.item:last-child {
+    background-color: #d64141;
+}

@@ -1,0 +1,11 @@
+.container {
+    display: flow-root; /* 使容器成为 BFC */
+  }
+  .item {
+    float: left;
+    background-color: aqua;
+    margin-right: 2px;
+    border: 1px solid #000;
+    padding: 10px;
+  }
+  

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>display:contents 演示</title>
+  <style>
+    .container {
+        background-color: lightblue;
+        padding: 20px;
+        width: 300px;
+        display: contents; 
+        /* 使用 display: contents 来让子元素直接成为父元素的子元素 */
+        /* 注意：display: contents 会使得父元素的样式失效，子元素会直接继承父元素的样式 */
+    }
+
+    .child {
+        background-color: lightcoral;
+        padding: 10px;
+        margin: 5px;
+        font-size: 20px;
+    }
+
+  </style>
+</head>
+<body>
+    <div class="container">
+        <div class="child">Child 1</div>
+        <div class="child">Child 2</div>
+        <div class="child">Child 3</div>
+      </div>
+</body>
+</html>
