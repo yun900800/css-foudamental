@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contain 属性演示</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    .box {
+      border: 2px solid #333;
+      background: #ffdddd;
+      transition: all 0.3s ease;
+      margin-bottom: 1em;
+      padding: 10px;
+    }
+
+    .content {
+      font-size: 32px;
+      white-space: nowrap;
+    }
+
+    button {
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h2>点击按钮切换 <code>contain</code> 属性</h2>
+
+<div id="container" class="box">
+  <div class="content">这是一段非常非常非常长的文字！🤯</div>
+</div>
+
+<button onclick="toggleContain()">切换 contain</button>
+<p>当前 contain 模式：<span id="mode">none</span></p>
+
+<script>
+  const container = document.getElementById('container');
+  const modeDisplay = document.getElementById('mode');
+  let isSizeContained = false;
+
+  function toggleContain() {
+    if (!isSizeContained) {
+      container.style.contain = 'size';
+      container.style.width = '300px'; // 设置一个宽度，避免为0
+      container.style.height = '50px'; // 设置一个高度
+      isSizeContained = true;
+      modeDisplay.textContent = 'size';
+    } else {
+      container.style.contain = 'none';
+      container.style.width = '';
+      container.style.height = '';
+      isSizeContained = false;
+      modeDisplay.textContent = 'none';
+    }
+  }
+</script>
+
+</body>
+</html>

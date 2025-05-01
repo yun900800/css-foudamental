@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>比例盒子布局合集</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    background: #f9f9f9;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  h2 {
+    margin: 30px 0 10px;
+    color: #333;
+  }
+
+  /* 通用盒子样式 */
+  .box {
+    position: relative;
+    width: 100%;
+    background: #4f86f7;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .box-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+  }
+
+  /* 自适应网格布局 */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+  }
+
+  /* 不同比例容器 */
+  .square { padding-top: 100%; }  /* 正方形 */
+  .rect-16-9 { padding-top: 56.25%; }  /* 16:9 */
+  .rect-4-3 { padding-top: 75%; } /* 4:3 */
+  .rect-2-1 { padding-top: 50%; } /* 2:1 */
+</style>
+</head>
+
+<body>
+
+<h2>自适应正方形网格</h2>
+<div class="grid">
+  <div class="box square"><div class="box-inner">正方形 1</div></div>
+  <div class="box square"><div class="box-inner">正方形 2</div></div>
+  <div class="box square"><div class="box-inner">正方形 3</div></div>
+  <div class="box square"><div class="box-inner">正方形 4</div></div>
+  <div class="box square"><div class="box-inner">正方形 5</div></div>
+  <div class="box square"><div class="box-inner">正方形 6</div></div>
+</div>
+
+<h2>自适应 16:9 封面图</h2>
+<div class="box rect-16-9" style="max-width: 600px; margin: 20px auto;">
+  <div class="box-inner">16:9 封面图</div>
+</div>
+
+<h2>各种比例盒子布局</h2>
+<div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
+  <div class="box rect-4-3"><div class="box-inner">4:3 盒子</div></div>
+  <div class="box rect-2-1"><div class="box-inner">2:1 盒子</div></div>
+</div>
+
+</body>
+</html>

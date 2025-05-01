@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Modal with Containment</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button id="openModalBtn">打开模态框</button>
+
+  <div id="myModal" class="modal">
+    <div class="modal-content contained">
+      <span class="close-btn">&times;</span>
+      <h2>模态框标题</h2>
+      <p>这是内容，contain 属性让这个弹窗完全自给自足。</p>
+      <p>即使动画、样式变化，也不会影响外面。</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

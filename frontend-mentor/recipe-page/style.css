@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: hsl(0, 0%, 98%);
+    color: hsl(0, 0%, 20%);
+}
+
+.container {
+    width: 100%;
+}
+
+.content {
+    width: 100%;
+    padding: 1rem;
+}
+
+.header {
+    width: 100%;
+    height: 240px;
+}
+
+.header img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content .title {
+    text-align: left;
+    margin: 1rem 0;
+}
+
+.content p {
+    text-align: left;
+    font-size: 14px;
+}
+
+.content ul.prepare-desc {
+    background: #FFF8FC;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+}
+
+.content ul.prepare-desc h2{
+    color: purple;
+    font-size: 24px;
+}
+
+.content ul.prepare-desc li {
+    margin: 0.5rem 2rem;
+    font-size: 16px;
+}
+
+.content ul.ingredents {
+    margin-top: 1rem;
+    border-bottom: 1px solid hsl(0, 0%, 80%);
+}
+
+.content ul.ingredents h2{
+    font-size: 24px;
+}
+
+.content ul li::marker {
+    color: rgb(240, 99, 99);
+    font-weight: bold;
+}
+
+.content ul.ingredents li {
+    margin: 0.5rem 2rem;
+    font-size: 16px;
+}
+
+.content ol.instruction {
+    color: rgb(240, 99, 99);
+    margin-top: 1rem;
+    border-bottom: 1px solid hsl(0, 0%, 80%);
+}
+
+.content ol li::marker {
+    color: rgb(240, 99, 99);
+    font-weight: bold;
+}
+
+.content ol.instruction h2{
+    font-size: 24px;
+}
+
+.content ol.instruction li {
+    color: hsl(0, 0%, 20%);
+    margin: 0.5rem 1rem;
+    font-size: 16px;
+}
+
+.content .newtrition h2 {
+    font-size: 24px;
+    color: rgb(240, 99, 99);
+    margin: 1rem 0;
+}
+
+.content .newtrition .item {
+    display: flex;
+    margin: 1rem 0;
+    border-bottom: 1px solid hsl(0, 0%, 80%);
+    padding-bottom: 0.5rem;
+    
+}
+
+.content .newtrition .item span{
+    display: inline-block;
+    min-width: 150px;
+    flex: 1;
+}
+
+.content .newtrition .item span{
+    display: inline-block;
+    min-width: 150px;
+    flex: 1;
+}
+
+
+.content .newtrition .item span:first-child{
+    margin-left: 1.5rem;
+}
+
+.content .newtrition .item span:last-child{
+    color: peru;
+}
+
+.content .newtrition .item:last-child{
+    border-bottom: none;
+    
+}
+
+@media only screen and (min-width: 768px) {
+    body {
+        background: #f3e5d8;
+        padding: 50px 0;
+    }
+    .container {
+        max-width: 768px;
+        margin: 0 auto;
+        background-color: #fff;
+        border-radius: 20px;
+    }
+
+    .content {
+        padding: 1.2rem;
+    }
+
+    .header {
+        padding: 1.2rem 1.2rem 0 1.2rem;
+    }
+
+    .header img {
+        border-radius: 20px;
+    }
+}

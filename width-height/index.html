@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inline vs Inline-Box</title>
+  <style>
+    .inline-text {
+      display: inline;
+      background: pink;
+      width: 200px;   /* 无效！ */
+      height: 100px;  /* 无效！ */
+    }
+
+    .inline-img {
+      display: inline;
+      background: lightblue;
+      width: 200px;
+      height: 100px;
+    }
+
+    img {
+      width: 100px;
+      height: 50px;
+    }
+    .box {
+        width: 100px;
+        height: 100px;
+        background: lightblue;
+        min-width: 150px;
+        padding: 20px;
+        border: 5px solid navy;
+        box-sizing: content-box;
+        max-width: 300px;
+    }
+    
+  </style>
+</head>
+<body>
+  <p>
+    <span class="inline-text">这是一个<span style="font-weight: bold">行内</span>文字</span>
+  </p>
+  <p>
+    <img class="inline-img" src="http://gips2.baidu.com/it/u=195724436,3554684702&fm=3028&app=3028&f=JPEG&fmt=auto?w=1280&h=960" alt="图片" />
+  </p>
+  <div class="box">我是个盒子</div>
+</body>
+</html>

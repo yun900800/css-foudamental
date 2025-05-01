@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>响应式横幅</title>
+  <style>
+    .banner {
+        display: flex;
+        justify-content: center; /* 横向居中 */
+        align-items: center; /* 纵向居中 */
+        background-color: #4CAF50; /* 背景色 */
+        color: white;
+        padding: 20px;
+        width: 100%; /* 宽度自适应 */
+        box-sizing: border-box;
+    }
+
+    .banner-content {
+        text-align: center;
+    }
+
+    .banner h1 {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+
+    .banner button {
+        padding: 10px 20px;
+        font-size: 1.2em;
+        background-color: #fff;
+        color: #4CAF50;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .banner button:hover {
+        background-color: #45a049;
+    }
+
+
+    .banner-image {
+  background-image: url('https://img1.baidu.com/it/u=1005000719,311741344&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500'); /* 背景图片 */
+  background-size: cover; /* 背景图覆盖整个横幅 */
+  background-position: center; /* 背景图居中 */
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.banner-text h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.banner-text button {
+  padding: 12px 30px;
+  font-size: 1.2em;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.banner-text button:hover {
+  background-color: #f1f1f1;
+}
+
+.responsive-banner {
+  background-image: url('https://img0.baidu.com/it/u=1948419241,1108190265&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500');
+  background-size: cover;
+  background-position: center;
+  height: 50vh; /* 高度设置为视口的 50% */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.banner-content1 {
+  text-align: center;
+  max-width: 80%; /* 限制内容宽度 */
+}
+
+.banner-content1 h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.banner-content1 p {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.banner-content1 button {
+  padding: 12px 30px;
+  font-size: 1.2em;
+  background-color: #f1c40f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.banner-content1 button:hover {
+  background-color: #f39c12;
+}
+
+/* 容器：使用 Flexbox 布局 */
+.flex-container {
+  display: flex;
+  justify-content: space-around; /* 使项目均匀分布 */
+  align-items: center; /* 垂直居中 */
+  flex-wrap: wrap; /* 使容器响应式，自动换行 */
+  height: 50vh; /* 设置容器高度 */
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+/* 项目：每个按钮 */
+.flex-item {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease; /* 为动画设置平滑过渡 */
+}
+
+/* 按钮的微交互：悬停时 */
+.flex-item:hover {
+  transform: scale(1.1); /* 按钮放大 */
+  background-color: #45a049; /* 按钮颜色变化 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 增加阴影 */
+}
+
+
+/* 卡片容器：Flexbox 布局 */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+/* 单个卡片 */
+.card {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 设置动画效果 */
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card h2 {
+  font-size: 1.5em;
+  padding: 10px;
+}
+
+.card p {
+  padding: 10px;
+  color: #555;
+}
+
+/* 卡片的微交互：鼠标悬停时 */
+.card:hover {
+  transform: scale(1.05); /* 卡片轻微放大 */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* 增加阴影 */
+}
+
+
+
+/* 列表容器：使用 Flexbox 布局 */
+.list-container {
+  display: flex;
+  flex-direction: column; /* 垂直排列 */
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+/* 单个列表项 */
+.list-item {
+  padding: 15px 30px;
+  background-color: #3498db;
+  color: white;
+  border-radius: 5px;
+  font-size: 1.2em;
+  text-align: center;
+  width: 200px;
+  transition: transform 0.3s ease, background-color 0.3s ease; /* 设置动画效果 */
+}
+
+/* 列表项的微交互：鼠标悬停时 */
+.list-item:hover {
+  transform: translateY(-10px); /* 上升效果 */
+  background-color: #2980b9; /* 背景颜色变化 */
+}
+
+
+
+
+  </style>
+</head>
+<body>
+    <div class="banner">
+        <div class="banner-content">
+          <h1>限时促销！最高优惠 50%</h1>
+          <button>立即抢购</button>
+        </div>
+    </div>
+    <div class="banner-image">
+        <div class="banner-text">
+          <h1>限时抢购！</h1>
+          <button>了解更多</button>
+        </div>
+    </div>
+    <div class="responsive-banner">
+        <div class="banner-content1">
+          <h1>超级促销大优惠！</h1>
+          <p>限时折扣，错过等一年！</p>
+          <button>立即抢购</button>
+        </div>
+      </div>
+      
+      <div class="flex-container">
+        <button class="flex-item">按钮 1</button>
+        <button class="flex-item">按钮 2</button>
+        <button class="flex-item">按钮 3</button>
+        <button class="flex-item">按钮 4</button>
+      </div>
+
+      <div class="card-container">
+        <div class="card">
+          <img src="https://n.sinaimg.cn/sinakd20110/600/w1920h1080/20240624/55a7-a74c57acd8d75c34c13ede42ce542883.jpg" alt="Card 1">
+          <h2>卡片 1</h2>
+          <p>这是卡片 1 的内容</p>
+        </div>
+        <div class="card">
+          <img src="https://img2.baidu.com/it/u=2961228698,4111222346&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500" alt="Card 2">
+          <h2>卡片 2</h2>
+          <p>这是卡片 2 的内容</p>
+        </div>
+        <div class="card">
+          <img src="https://img1.baidu.com/it/u=2822949595,2298007584&fm=253&fmt=auto&app=120&f=JPEG?w=1422&h=800" alt="Card 3">
+          <h2>卡片 3</h2>
+          <p>这是卡片 3 的内容</p>
+        </div>
+      </div>
+      
+      <div class="list-container">
+        <div class="list-item">项目 1</div>
+        <div class="list-item">项目 2</div>
+        <div class="list-item">项目 3</div>
+        <div class="list-item">项目 4</div>
+      </div>
+      
+</body>
+</html>
