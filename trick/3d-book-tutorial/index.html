@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>3D Book with tutorial</title>
+</head>
+
+<body>
+    <a class="book-container"
+      style="
+      --book-link: 'https://d2sofvawe08yqg.cloudfront.net/outstanding-developer/hero2x?1595108679';
+      --img-url: 'https://d2sofvawe08yqg.cloudfront.net/outstanding-developer/hero2x?1595108679';
+      --img-alt: '3D Book';
+      "
+      href=""
+      target="_blank"
+      rel="noreferrer noopener">
+          <div class="book">
+              <img
+            />
+          </div>
+    </a>
+    <a class="book-container"
+      style="
+      --book-link: 'https://img0.baidu.com/it/u=1255286572,550654495&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500';
+      --img-url: 'https://img0.baidu.com/it/u=1255286572,550654495&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500';
+      --img-alt: '3D Book';
+      "
+      href=""
+      target="_blank"
+      rel="noreferrer noopener">
+          <div class="book">
+              <img
+            />
+          </div>
+    </a>
+    <a class="book-container"
+      style="
+      --book-link: 'https://img1.baidu.com/it/u=3437416322,849194824&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1067';
+      --img-url: 'https://img1.baidu.com/it/u=3437416322,849194824&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1067';
+      --img-alt: '3D Book';
+      "
+      href=""
+      target="_blank"
+      rel="noreferrer noopener">
+          <div class="book">
+              <img
+            />
+          </div>
+    </a>
+    <a class="book-container"
+      style="
+      --book-link: 'https://img0.baidu.com/it/u=1832503107,1483580115&fm=253&app=138&f=JPEG?w=800&h=1067';
+      --img-url: 'https://img0.baidu.com/it/u=1832503107,1483580115&fm=253&app=138&f=JPEG?w=800&h=1067';
+      --img-alt: '3D Book';
+      "
+      href=""
+      target="_blank"
+      rel="noreferrer noopener">
+          <div class="book">
+              <img
+            />
+          </div>
+    </a>
+    <a class="book-container"
+      style="
+      --book-link: 'https://img1.baidu.com/it/u=4265507623,3210184587&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1067';
+      --img-url: 'https://img1.baidu.com/it/u=4265507623,3210184587&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1067';
+      --img-alt: '3D Book';
+      "
+      href=""
+      target="_blank"
+      rel="noreferrer noopener">
+          <div class="book">
+              <img
+            />
+          </div>
+    </a>
+    <a class="book-container"
+      style="
+      --book-link: 'https://img1.baidu.com/it/u=277840268,3033320952&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=500';
+      --img-url: 'https://img1.baidu.com/it/u=277840268,3033320952&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=500';
+      --img-alt: '3D Book';
+      "
+      href=""
+      target="_blank"
+      rel="noreferrer noopener">
+          <div class="book">
+              <img
+            />
+          </div>
+    </a>
+    <script>
+      const containers = document.querySelectorAll('.book-container');
+      for (const container of containers) {
+        const imgAlt = getComputedStyle(container).getPropertyValue('--img-alt').trim().replace(/^['"]|['"]$/g, '');
+        const imgSrc = getComputedStyle(container).getPropertyValue('--img-url').trim().replace(/^['"]|['"]$/g, '');
+        const bookLink = getComputedStyle(container).getPropertyValue('--book-link').trim().replace(/^['"]|['"]$/g, '');
+        const img = container.querySelector('img');
+        img.alt = imgAlt;
+        img.src = imgSrc;
+        container.href = bookLink;
+      }
+    </script>
+</body>
+
+</html>
