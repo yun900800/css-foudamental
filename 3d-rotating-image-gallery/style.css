@@ -17,6 +17,8 @@ body {
     height: 300px;
     transform-style: preserve-3d;
     animation: animate 22s linear infinite;
+    /* debug使用 */
+    /* transform: perspective(1500px) rotateY(90deg); */
 }
 
 @keyframes animate {
@@ -36,9 +38,7 @@ body {
     height: 100%;
     transform-style: preserve-3d;
     transform-origin: center;
-    transform: rotateY(calc(45deg * var(--v)))
-    translateZ(300px)
-    ;
+    transform: rotateY(calc(45deg * var(--v))) translateZ(300px);
     -webkit-box-reflect: below 0px linear-gradient(transparent,transparent,#0004);
 }
 
@@ -57,7 +57,7 @@ body {
     0% {
         filter: hue-rotate(0deg);
         transform: perspective(1500px) rotateY(0deg) translateZ(500px);
-        -webkit-box-reflect: below 0px linear-gradient(transparent,transparent,#0004);
+        -webkit-box-reflect: below 0px linear-gradient(transparent,transparent,rgba(238, 131, 131, 0.267));
     }
     100% {
         filter: hue-rotate(360deg);

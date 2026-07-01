@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox 响应式卡片布局示例</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        /* 布局容器 */
+        .layout {
+            width: 100%;
+            max-width: 1200px; /* 限制最大宽度，便于观察响应式效果 */
+            margin: 0 auto;
+            padding: 16px;
+
+            /* 核心 Flexbox 布局 */
+            display: flex;
+            gap: 16px; /* 行间距和列间距 */
+            flex-wrap: wrap; /* 允许卡片自动换行 */
+
+            /* 保持卡片从左到右排列 */
+            justify-content: flex-start; 
+        }
+
+        /* -------------------
+           卡片基础和响应式样式
+           ------------------- */
+        .card {
+            /* * 关键布局属性：
+             * flex-basis: calc(33.33% - 16px); 默认三列布局，但要减去 gap 的影响。
+             * 注意：Flexbox 会尝试在主轴上均匀分配空间。
+             * 由于卡片高度不一，它们在交叉轴（垂直方向）的排列不会严格对齐，
+             * 而是见缝插针（但仍按源代码顺序）。
+             */
+            flex-basis: calc(33.33% - 16px); 
+            min-width: 250px; /* 最小宽度，确保在小屏幕上至少能显示一列 */
+            flex-grow: 1; /* 允许卡片在行内拉伸以填满空间 */
+            
+            /* 视觉样式 */
+            border: 1px solid #ddd;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background-color: #fff;
+            box-sizing: border-box; /* 确保 padding 和 border 不增加元素总宽度 */
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 150px;
+            background-color: #f0f0f0;
+            border: 1px dashed #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        /* 响应式媒体查询：从三列到两列 */
+        @media (max-width: 900px) {
+            .card {
+                /* 在中等屏幕上变成两列 */
+                flex-basis: calc(50% - 8px); 
+                /* 调整 flex-basis 时，也要考虑 gap 的影响，此处简化处理*/
+                min-width: 300px;
+            }
+        }
+
+        /* 响应式媒体查询：从两列到一列 */
+        @media (max-width: 600px) {
+            .card {
+                /* 在小屏幕上变成一列，占满宽度 */
+                flex-basis: 100%;
+                min-width: unset; /* 移除最小宽度限制 */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="layout">
+        <div class="card card-1">
+            <h3>产品标题 A (短)</h3>
+            <p>这是第一张卡片，它的内容相对较短。</p>
+        </div>
+        
+        <div class="card card-2">
+            <h3>文章标题 B：超长内容示例 (高)</h3>
+            <p>
+                这是第二张卡片，内容较长，以展示不同高度的卡片如何排列。Flexbox 允许每行独立对齐，所以上下行之间的垂直对齐会被忽略。
+            </p>
+            <p>
+                **注意现象：** 拖动浏览器宽度观察换行时，卡片 3 和 4 可能会“向上”堆叠到卡片 2 下方的空白区域，而不是严格在卡片 1 下方开始新的一行。
+            </p>
+            <p>这里还有额外的段落，让它更高。</p>
+        </div>
+        
+        <div class="card card-3">
+            <h3>图片 C (中)</h3>
+            <div class="image-placeholder">图片占位符</div>
+            <p>这是一张带图片的卡片。</p>
+        </div>
+        
+        <div class="card card-4">
+            <h3>简短通知 D (最短)</h3>
+            <p>只有一行文字。</p>
+        </div>
+        
+        <div class="card card-5">
+            <h3>产品 E (中高)</h3>
+            <p>一个中等长度的描述。</p>
+            <p>再加一行，让它的高度处于中间水平。</p>
+        </div>
+        
+        <div class="card card-6">
+            <h3>服务 F (标准)</h3>
+            <p>标准高度卡片。</p>
+        </div>
+        
+        <div class="card card-7">
+            <h3>特别推荐 G (最高)</h3>
+            <p>这是一个特别高的卡片，用于演示如何将其他卡片推到下一行。Flexbox 在主轴（行）上分配空间，并在交叉轴（列）上独立对齐，这也是它适合这种自由排列的原因。</p>
+            <p>更多内容，让它更高更高。</p>
+            <p>第三段文字。这个卡片的高度最高。</p>
+        </div>
+        
+        <div class="card card-8">
+            <h3>新闻 H (中等)</h3>
+            <p>常规内容，保持中等高度。</p>
+        </div>
+        
+        <div class="card card-9">
+            <h3>最后一项 I (短)</h3>
+            <p>收尾内容。</p>
+        </div>
+    </section>
+
+</body>
+</html>

@@ -1,3 +1,19 @@
+:root {
+    --color-qiubolan: #8AB3CC;
+    --color-zibohan: #817C9C;
+    --color-silver-red: #F1C4CD;
+    --color-neng-e-yellow: #FFF79A;
+    --color-yanzhi: #9B1E45;
+    --color-banjian: #F6E8B2;
+
+
+    --halfjian-core: rgba(246, 233, 198, 1);
+    --halfjian-light: rgba(253, 247, 231, 0.8);
+    --halfjian-glow: rgba(254, 252, 247, 0.6);
+    --halfjian-shadow: rgba(205, 191, 153, 1);
+
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +33,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #09da37;
+    background: var(--color-banjian);
     z-index: 1;
     clip-path: circle(15vw at var(--x) var(--y));
 }
@@ -45,4 +61,138 @@ body {
     -webkit-text-stroke: 4px #09da37;
     font-size: 25vw;
     font-weight: bold;
+}
+
+.halfjian-petal {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: radial-gradient(
+    circle at 40% 40%,
+    var(--halfjian-core) 0%,
+    var(--halfjian-light) 40%,
+    var(--halfjian-glow) 70%,
+    transparent 100%
+  );
+  opacity: 0.9;
+  animation: glowPulse 6s ease-in-out infinite;
+  filter: blur(0.4px) brightness(1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-in-out;
+  transform: rotate(-6deg);
+  margin: 50px auto;
+}
+
+.halfjian-petal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.06) 0px,
+    rgba(255, 255, 255, 0.06) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+
+  mix-blend-mode: soft-light;
+  opacity: 0.6;
+}
+
+.halfjian-petal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.05) 0px,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 2px,
+      transparent 4px
+    );
+  mix-blend-mode: soft-light;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+/* 🌬️ 光感+透明度动画 */
+@keyframes glowPulse {
+  0% {
+    opacity: 0.85;
+    filter: blur(0.6px) brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(0.2px) brightness(1.07);
+  }
+  100% {
+    opacity: 0.85;
+    filter: blur(0.6px) brightness(1);
+  }
+}
+
+
+.halfjian-flower {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  top: -820px;
+  left: 300px;
+}
+
+.petal {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(
+    circle at 40% 40%,
+    rgba(246, 233, 198, 0.95) 0%,
+    rgba(253, 247, 231, 0.8) 40%,
+    rgba(254, 252, 247, 0.4) 70%,
+    transparent 100%
+  );
+  border-radius: 60% 70% 60% 50% / 50% 60% 70% 60%;
+  transform: rotate(-10deg);
+  filter: blur(0.2px) brightness(1.05);
+  opacity: 0.95;
+  animation: flutter 6s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(246, 233, 198, 0.2);
+  z-index: 1;
+}
+
+.petal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.05) 0px,
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 3px,
+    transparent 6px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.4;
+  z-index: 2;
+  pointer-events: none;
+}
+
+@keyframes flutter {
+  0%, 100% {
+    transform: rotate(-10deg) scale(1);
+    filter: brightness(1.05);
+  }
+  50% {
+    transform: rotate(-9deg) scale(1.03);
+    filter: brightness(1.1);
+  }
 }

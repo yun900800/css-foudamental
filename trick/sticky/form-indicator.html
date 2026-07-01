@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分步表单指示器示例</title>
+    <link rel="stylesheet" href="indicator.css">
+</head>
+<body>
+
+    <header class="page-title">
+        <h1>注册流程</h1>
+        <p>请完成以下步骤进行注册</p>
+    </header>
+
+    <div class="form-wrapper">
+        <nav class="sticky-step-indicator">
+            <ul>
+                <li data-step="1" class="active"><a href="#step1">1. 个人信息</a></li>
+                <li data-step="2"><a href="#step2">2. 地址详情</a></li>
+                <li data-step="3"><a href="#step3">3. 支付信息</a></li>
+                <li data-step="4"><a href="#step4">4. 确认提交</a></li>
+            </ul>
+        </nav>
+
+        <form class="multi-step-form">
+            <section id="step1" class="form-section" data-step="1">
+                <h2>1. 个人信息</h2>
+                <label for="firstName">名:</label>
+                <input type="text" id="firstName" name="firstName" required>
+
+                <label for="lastName">姓:</label>
+                <input type="text" id="lastName" name="lastName" required>
+
+                <label for="email">邮箱:</label>
+                <email type="email" id="email" name="email" required></email>
+
+                <label for="phone">电话:</label>
+                <input type="tel" id="phone" name="phone">
+
+                <p>（此处还有很多表单字段，模拟长表单）</p>
+                <div style="height: 400px; background-color: #f0f8ff; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
+                    更多个人信息字段...
+                </div>
+            </section>
+
+            <section id="step2" class="form-section" data-step="2">
+                <h2>2. 地址详情</h2>
+                <label for="addressLine1">地址行1:</label>
+                <input type="text" id="addressLine1" name="addressLine1" required>
+
+                <label for="addressLine2">地址行2:</label>
+                <input type="text" id="addressLine2" name="addressLine2">
+
+                <label for="city">城市:</label>
+                <input type="text" id="city" name="city" required>
+
+                <label for="state">省份:</label>
+                <input type="text" id="state" name="state" required>
+
+                <label for="zipCode">邮编:</label>
+                <input type="text" id="zipCode" name="zipCode" required>
+
+                <p>（此处还有很多表单字段，模拟长表单）</p>
+                <div style="height: 400px; background-color: #fff0f5; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
+                    更多地址详情字段...
+                </div>
+            </section>
+
+            <section id="step3" class="form-section" data-step="3">
+                <h2>3. 支付信息</h2>
+                <label for="cardNumber">卡号:</label>
+                <input type="text" id="cardNumber" name="cardNumber" required>
+
+                <label for="expiryDate">有效期:</label>
+                <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required>
+
+                <p>（此处还有很多表单字段，模拟长表单）</p>
+                <div style="height: 400px; background-color: #f5fff0; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
+                    更多支付信息字段...
+                </div>
+            </section>
+
+            <section id="step4" class="form-section" data-step="4">
+                <h2>4. 确认提交</h2>
+                <p>请仔细核对您的信息，确认无误后点击提交。</p>
+                <div class="summary-box">
+                    <h3>您的信息预览:</h3>
+                    <p><strong>姓名:</strong> <span id="summaryName"></span></p>
+                    <p><strong>邮箱:</strong> <span id="summaryEmail"></span></p>
+                    <p><strong>地址:</strong> <span id="summaryAddress"></span></p>
+                    </div>
+                <label>
+                    <input type="checkbox" id="agreeTerms" required>
+                    我已阅读并同意 <a href="#">服务条款</a>
+                </label>
+                <button type="submit">提交注册</button>
+            </section>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

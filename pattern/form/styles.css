@@ -1,0 +1,118 @@
+/* 基础样式和变量 */
+:root {
+    --color-primary: #007bff;
+    --color-text: #333;
+    --color-border: #ccc;
+    --color-bg: #f7f9fc;
+    --size-0: 0.25rem;
+    --size-1: 0.5rem;
+    --size-2: 1rem;
+    --size-3: 1.5rem;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--color-bg);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: var(--size-3);
+}
+
+.heading {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.subheading {
+    font-size: 1rem;
+    color: #666;
+    margin: 0;
+}
+
+/* --- 表单布局核心 --- */
+
+/* 1. 外层容器：管理整个表单区域 */
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-2); /* 控制标题、副标题和表单主体之间的间距 */
+    background-color: white;
+    padding: var(--size-3);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+/* 2. 表单主体：管理所有表单控件 */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-1); /* 控制所有表单分组和按钮之间的间距 */
+}
+
+/* 3. 表单分组：管理单个输入字段 */
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-0); /* 控制 label 和 input 之间的间距 */
+}
+
+.label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: var(--size-0);
+}
+
+.input {
+    width: 100%;
+    padding: var(--size-1);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    box-sizing: border-box; /* 确保 padding 不会增加元素宽度 */
+    font-size: 1rem;
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.forgot-password {
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.forgot-password:hover {
+    color: #0056b3;
+}
+
+.button {
+    padding: var(--size-1);
+    border: none;
+    border-radius: 4px;
+    background-color: var(--color-primary);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}

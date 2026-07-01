@@ -1,0 +1,43 @@
+.card-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0f0f0;
+    perspective: 1000px;
+}
+
+.card {
+    width: 300px;
+    height: 400px;
+    position: relative;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card-face {
+  /* 绝对定位，使正反面重叠 */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  color: white;
+  background-color: #3498db;
+}
+
+.card-back {
+  /* 初始状态下将背面旋转 180 度，隐藏起来 */
+  background-color: #e74c3c;
+  transform: rotateY(180deg);
+}
+
+/* 触发翻转效果 */
+.card-container:hover .card {
+  /* 鼠标悬停时，将卡片旋转 180 度 */
+  transform: rotateY(180deg);
+}

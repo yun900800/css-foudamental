@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History Router</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+     -->
+    <!-- 
+    1.拦截a标签 的点击事件，阻止它的默认跳转行为
+
+    2.使用 H5 的 history API 更新 URL
+
+    3.监听和匹配路由改变以更新页面
+     -->
+</head>
+<body>
+    <div class="navbar">
+        <a href="/home">Home</a>
+        <a href="/user">User</a>
+        <a href="/about">About</a>
+    </div>
+    
+    <div id="view"></div>
+    <main>
+      <header>
+        <div class="content-width">
+          <h1>Sweet strawberry cheesecake</h1>
+          <p><em>Sweet muffin bear claw</em> donut chupa chups liquorice tiramisu candy canes sweet.</p>
+        </div>
+      </header>
+
+      <div class="content-width">
+        <p>Chocolate shortbread caramels tootsie roll tiramisu sweet dessert apple pie fruitcake. <strong>Croissant icing chupa chups</strong> sweet roll cake tart fruitcake soufflé jujubes. Shortbread brownie tootsie roll ice cream pudding dessert marshmallow sesame snaps. Cake pie jujubes lemon drops sesame snaps soufflé cookie jujubes wafer. Caramels ice cream fruitcake pastry cheesecake chocolate tootsie roll cake marshmallow. Pie candy canes cupcake dragée bonbon fruitcake marzipan. Tootsie roll halvah bonbon cake muffin gummies. Bonbon cotton candy marzipan cake sesame snaps chupa chups donut dessert. Macaroon gummies macaroon biscuit chocolate carrot cake gummi bears.</p>
+  
+        <h2>Donut candy canes cotton candy</h2>
+  
+        <p><strong><em>Liquorice gingerbread tiramisu</em></strong> pie bonbon soufflé. Jujubes tootsie roll muffin gingerbread powder. Carrot cake halvah chocolate bar tart sugar plum sugar plum pastry. Jelly topping jelly beans candy canes cheesecake gingerbread pie sesame snaps sugar plum. Pie cheesecake pudding jelly brownie jelly beans halvah. Ice cream powder carrot cake bear claw cake cheesecake.</p>
+  
+        <p><em>Jelly-o jelly-o jelly</em> lollipop croissant. Carrot cake tart danish macaroon dragée gingerbread. Sugar plum cotton candy biscuit <strong>fruitcake powder liquorice</strong>. Shortbread candy pie tart pudding. Sesame snaps bear claw tart tiramisu donut chocolate cake. Cheesecake tiramisu chocolate cake dessert dessert candy candy canes apple pie marshmallow. Sweet croissant pudding toffee tootsie roll gummies tart pastry pie. Candy apple pie cake wafer tootsie roll tart icing halvah.</p>
+  
+        <h3>Gingerbread gummi bears</h3>
+  
+        <p><em>Tiramisu sweet pastry</em> danish topping ice cream caramels. Tiramisu candy liquorice jelly-o marzipan candy canes cupcake topping. Gummi bears jujubes carrot cake shortbread sesame snaps marshmallow danish pudding cotton candy. <strong>Cake jujubes biscuit</strong> topping marzipan sweet roll apple pie bonbon. Bear claw donut bear claw bonbon caramels halvah gummi bears. Gummi bears apple pie jelly-o donut sesame snaps icing marzipan.</p>
+  
+        <p><strong><em>Bonbon chupa chups</em></strong> donut dessert pudding. Sweet roll caramels dessert muffin croissant. Powder chocolate lollipop ice cream bonbon pie candy muffin cotton candy. Fruitcake topping chupa chups toffee jelly-o halvah. Candy soufflé toffee gummies fruitcake oat cake chocolate cake. Dessert cupcake cheesecake sweet roll bear claw. Marshmallow halvah bear claw biscuit dragée marzipan lemon drops jelly.</p>
+      </div>
+    </main>
+<script>
+    // 重写所有 a 标签事件
+    const elements = document.querySelectorAll('a[href]')
+    elements.forEach(el => el.addEventListener('click', (e) => {
+      e.preventDefault()    // 阻止默认点击事件
+      const test = el.getAttribute('href')
+      history.pushState(null, null, el.getAttribute('href'))     
+      // 修改当前url（前两个参数分别是 state 和 title，这里暂时不需要用到
+      onPopState()          
+      // 由于pushState不会触发onpopstate事件, 所以我们需要手动触发事件
+    }))
+    
+    // onpopstate事件回调, 匹配路由的改变并渲染对应内容, 和 hash 模式基本相同
+    function onPopState() {
+        const view = document.querySelector('#view')
+        switch (location.pathname) {
+          case '/home':
+              view.innerHTML = 'Home';
+              break;
+          case '/user':
+              view.innerHTML = 'User';
+              break;
+          case '/about':
+              view.innerHTML = 'About';
+              break;
+        }
+    }
+
+    // 绑定onpopstate事件, 当页面路由发生更改时(如前进后退)，将触发popstate事件
+    window.addEventListener('popstate', onPopState);
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>响应式设计 VS 内在设计</title>
+    <style>
+        /* ==========================================================================
+           基础样式（非核心，仅为了好看）
+           ========================================================================== */
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 { text-align: center; color: #111; margin-bottom: 40px; }
+        h2 { border-left: 5px solid #0071e3; padding-left: 10px; margin-top: 40px; }
+        p.desc { color: #666; font-size: 0.95rem; margin-top: -10px; margin-bottom: 20px; }
+        
+        /* 统一的卡片基础样式 */
+        .card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-sizing: border-box;
+            border: 1px solid #e3e3e3;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* ==========================================================================
+           方法一：响应式设计（Responsive Design）—— 依赖媒体查询与百分比
+           ========================================================================== */
+        .responsive-stream {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -10px; /* 抵消卡片的 margin 间距 */
+        }
+
+        .responsive-stream .card {
+            /* 手机端默认：一行 1 个 */
+            width: calc(100% - 20px); 
+            margin: 10px;
+            background-color: #e3f2fd; /* 蓝色基调 */
+            border-color: #90caf9;
+        }
+
+        /* 当屏幕大于 600px 时（平板），强行修剪为一行 2 个 */
+        @media (min-width: 600px) {
+            .responsive-stream .card {
+                width: calc(50% - 20px); 
+            }
+        }
+
+        /* 当屏幕大于 1000px 时（电脑），强行修剪为一行 4 个 */
+        @media (min-width: 1000px) {
+            .responsive-stream .card {
+                width: calc(25% - 20px); 
+            }
+        }
+
+
+        /* ==========================================================================
+           方法二：内在设计（Intrinsic Design）—— 释放内容天性，一行代码搞定
+           ========================================================================== */
+        .intrinsic-stream {
+            display: grid;
+            
+            /* 核心看这里：没有写任何媒体查询！ */
+            /* 设定每张卡片内在底线最小 220px，放不下就自动换行，放得下就平分(1fr) */
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            
+            gap: 20px; /* 原生网格间距，再也不用算复杂的 calc() 了 */
+        }
+
+        .intrinsic-stream .card {
+            /* 卡片本身根本不需要设置宽度！ */
+            background-color: #e8f5e9; /* 绿色基调 */
+            border-color: #a5d6a7;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>网页布局进化论：响应式 VS 内在设计</h1>
+
+    <h2>1. 响应式设计 (Responsive Design)</h2>
+    <p class="desc">【蓝色卡片】依赖外部视口宽度。请注意：在 600px 或 1000px 的“临界点”时，布局会突兀地跳跃；而在临界点之间，卡片会被拉得极宽或极窄。</p>
+    
+    <div class="responsive-stream">
+        <div class="card">📦 商品 A</div>
+        <div class="card">📦 商品 B</div>
+        <div class="card">📦 商品 C</div>
+        <div class="card">📦 商品 D</div>
+        <div class="card">📦 商品 E</div>
+    </div>
+
+
+    <h2>2. 内在设计 (Intrinsic Design)</h2>
+    <p class="desc">【绿色卡片】由内容内在尺寸驱动。卡片自己说：“我最小不能低于 220px”。随着你缩放浏览器，卡片会极其流畅、丝滑地自动增减列数，完全没有生硬的断点跳跃。</p>
+    
+    <div class="intrinsic-stream">
+        <div class="card">🚀 商品 1</div>
+        <div class="card">🚀 商品 2</div>
+        <div class="card">🚀 商品 3</div>
+        <div class="card">🚀 商品 4</div>
+        <div class="card">📦 商品 E</div>
+    </div>
+
+</body>
+</html>

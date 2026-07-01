@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cutout.css" />
+    <title>Text-Masked Image / Text Cutout Effect</title>
+</head>
+<body>
+    <div class="container">
+  <img src="https://picsum.photos/id/1018/800/600" alt="美丽的风景" class="clipped-image">
+
+  <svg width="0" height="0" viewBox="0 0 800 600" style="position: absolute; z-index: -1;">
+    <defs>
+      <clipPath id="text-clip">
+        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="160" font-weight="bold" fill="#000">
+          生命书店
+        </text>
+      </clipPath>
+    </defs>
+  </svg>
+</div>
+
+<p class="description">
+  上面的图片通过 SVG clipPath 被“HELLO”文字镂空了。<br>
+  文字区域显示图片内容，其余部分透明，可以看到灰色背景。
+</p>
+</body>
+</html>
+

@@ -1,0 +1,175 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #eef1f6;
+}
+
+.page-title {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #6a89cc;
+    color: white;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.page-title h1 {
+    font-size: 2.8em;
+    margin-bottom: 10px;
+}
+
+.page-title p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.form-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Sticky Step Indicator --- */
+.sticky-step-indicator {
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
+    /* 核心 sticky 属性 */
+    position: sticky;
+    top: 0; /* 固定在视口顶部 */
+    z-index: 1000; /* 确保在表单内容之上 */
+}
+
+.sticky-step-indicator ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* 让步骤水平排列 */
+    justify-content: space-around; /* 均匀分布 */
+}
+
+.sticky-step-indicator li {
+    flex-grow: 1; /* 每个步骤占据等宽空间 */
+    text-align: center;
+    padding: 8px 0;
+    font-weight: bold;
+    color: #888;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.sticky-step-indicator li a {
+    text-decoration: none;
+    color: inherit; /* 继承父 li 的颜色 */
+    display: block; /* 使整个 li 区域可点击 */
+}
+
+.sticky-step-indicator li.active {
+    color: #3498db; /* 活跃步骤的颜色 */
+    background-color: #e0f2ff; /* 活跃步骤的背景色 */
+    border-radius: 5px; /* 稍微圆角 */
+}
+
+/* --- Form Styles --- */
+.multi-step-form {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-top: 30px;
+}
+
+.form-section {
+    margin-bottom: 60px; /* 每个部分的间距 */
+    padding-bottom: 30px;
+    border-bottom: 1px dashed #eee; /* 分隔线 */
+}
+
+.form-section:last-child {
+    border-bottom: none; /* 最后一个部分没有分隔线 */
+    margin-bottom: 0;
+}
+
+.form-section h2 {
+    color: #2c3e50;
+    font-size: 2em;
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #6a89cc;
+    margin-bottom: 30px;
+}
+
+.form-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-section input[type="text"],
+.form-section input[type="email"],
+.form-section input[type="tel"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.form-section input[type="text"]:focus,
+.form-section input[type="email"]:focus,
+.form-section input[type="tel"]:focus {
+    outline: none;
+    border-color: #6a89cc;
+    box-shadow: 0 0 0 3px rgba(106, 137, 204, 0.2);
+}
+
+.summary-box {
+    background-color: #f0f8ff;
+    border: 1px solid #d0e0ff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.summary-box h3 {
+    margin-top: 0;
+    color: #3498db;
+    font-size: 1.3em;
+}
+
+.summary-box p {
+    margin-bottom: 8px;
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #28a745; /* Green submit button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* General Link Styling */
+a {
+    color: #6a89cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

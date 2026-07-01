@@ -1,0 +1,171 @@
+.flip-container {
+  perspective: 1000px; /* 3D 透视 */
+  width: 200px;
+  height: 150px;
+}
+
+.flipper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-container:hover .flipper {
+  transform: rotateY(180deg); /* 鼠标悬停时翻转 */
+}
+
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* 隐藏背面 */
+}
+
+.front {
+  background: lightblue;
+  color: #000;
+}
+
+.back {
+  background: lightcoral;
+  color: #fff;
+  transform: rotateY(180deg); /* 提前旋转 180 度 */
+}
+
+.clipped-circle {
+  width: 200px;
+  height: 200px;
+  background-color: #e74c3c;
+  margin: 20px;
+  /* 创建一个圆形 */
+  clip-path: circle(50% at 50% 50%); /* 50% 半径，中心点在 50% 50% */
+}
+
+.clipped-star {
+  width: 200px;
+  height: 200px;
+  background-color: #27ae60;
+  margin: 20px;
+  /* 创建一个五角星 */
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  background-color: #f0f0f0;
+}
+
+.image-container,
+.card-container {
+  display: flex;
+  gap: 40px; /* 图片/卡片之间的间隔 */
+  margin-bottom: 50px;
+}
+
+img {
+  width: 250px; /* 统一图片宽度 */
+  height: 250px; /* 统一图片高度 */
+  object-fit: cover; /* 确保图片内容填充，可能裁剪 */
+  border: 4px solid #ccc; /* 边框，看清裁剪效果 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out; /* 添加悬停动画 */
+}
+
+/* 悬停效果 */
+img:hover {
+  transform: scale(1.05);
+}
+
+/* --- 圆形图片 --- */
+.clipped-circle {
+  /* 定义一个圆形裁剪路径：circle(半径 at x轴中心 y轴中心) */
+  clip-path: circle(50% at 50% 50%); /* 半径为元素宽度/高度的 50%，中心点在正中央 */
+}
+
+/* --- 六边形图片 --- */
+.clipped-hexagon {
+  /* 定义一个多边形裁剪路径：polygon(x1 y1, x2 y2, ...) */
+  /* 六边形的顶点坐标（百分比，相对于元素自身） */
+  clip-path: polygon(
+    50% 0%, /* 顶部中心 */
+    90% 25%, /* 右上 */
+    90% 75%, /* 右下 */
+    50% 100%, /* 底部中心 */
+    10% 75%, /* 左下 */
+    10% 25% /* 左上 */
+  );
+}
+
+/* --- 卡片样式 --- */
+.card {
+  width: 280px;
+  height: 200px;
+  background-color: #3498db;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box; /* 确保 padding 不会增加元素总尺寸 */
+  text-align: center;
+  font-size: 18px;
+  border-radius: 8px; /* 初始圆角，裁剪后可能不明显 */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease-in-out;
+}
+
+.card h3 {
+  margin-top: 0;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* 悬停效果 */
+.card:hover {
+  background-color: #2980b9;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* --- 三角形卡片 --- */
+.clipped-triangle {
+  /* 定义一个三角形裁剪路径：polygon(x1 y1, x2 y2, x3 y3) */
+  clip-path: polygon(
+    50% 0%, /* 顶部中心 */
+    0% 100%, /* 左下角 */
+    100% 100% /* 右下角 */
+  );
+  background-color: #e67e22;
+}
+
+/* --- 菱形卡片 --- */
+.clipped-rhombus {
+  /* 定义一个菱形裁剪路径：polygon(x1 y1, x2 y2, x3 y3, x4 y4) */
+  clip-path: polygon(
+    50% 0%, /* 顶部中心 */
+    100% 50%, /* 右侧中心 */
+    50% 100%, /* 底部中心 */
+    0% 50% /* 左侧中心 */
+  );
+  background-color: #27ae60;
+}

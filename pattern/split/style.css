@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+.split {
+    display: flex;
+    height: 100vh;
+}
+.left, .right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+.left {
+    background: #ddd;
+}
+.right {
+    background: #f4f4f4;
+}

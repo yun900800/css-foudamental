@@ -1,10 +1,35 @@
+:root {
+    --leaves-width: 136px;
+    --leaves-height: 136px;
+
+    --leave-width: 40px;
+    --leave-height: 64px;
+
+    --leave-three-width: 60px;
+    --leave-three-height: 72px;
+
+    --leave-intial-degree: -45deg;
+    --leave-three-intial-degree: 120deg;
+
+    --branch-width: 160px;
+    --branch-height: 160px;
+    --branch-thickness: 5px;
+    --branch-left-offset: 60px;
+    --branch-top-offset: 20px;
+
+    --branch-left-range: 60px;
+    --branch-right-range: 150px;
+}
+
 * {
+    /* init reset.css */
     margin: 0;
     padding:0 ; 
     box-sizing: border-box;
 }
 
 .main {
+    /* Step1 - set main container */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,107 +38,239 @@
 }
 
 .clover {
+    /* Step2 - set clover wrapper and leaves container */
     position: relative;
-    
 }
 
 .leaves {
+    /* Step2 - set clover wrapper and leaves container */
     position: relative;
-    width: 34px;
-    height: 34px;
+    /* width: 34px;
+    height: 34px; */
+    width: var(--leaves-width);
+    height: var(--leaves-height);
     background: transparent;
     z-index: 1;
 }
 
 .leave {
+    /* Step3 - construct heart leave */
     display: block;
     position: absolute;
-    width: 10px;
-    height: 16px;
+    width: var(--leave-width);
+    height: var(--leave-height);
+    left: calc( var(--leaves-width) / 2 );
+    top: calc( var(--leaves-height) / 2 - var(--leave-height) );
     background: #0f0;
-    border-radius: 5px 5px 0px 3px;
+    border-radius: calc(var(--leave-width) / 2) calc(var(--leave-width) / 2) 0px 3px;
+    /* Step3-1 - 沿着中心轴旋转-45deg */
     transform-origin: -2% 102%;
-    transform: rotate(-45deg);
-    left: 17px;
-    top: 1px;
+    transform: rotate(var(--leave-intial-degree));
+    
+}
+
+/* 这里在移动的时候，先定义好移动的位置，就是leave-new元素的左下角要对应到
+    父元素的中心位置，因此有了
+    left: calc( var(--leaves-width) / 2 );
+    top: calc( var(--leaves-height) / 2 - var(--leave-height) );
+    第二点就是旋转的中心点，这里正常来说是 transform-origin: 0% 100%;
+    但是因为这样设计会导致四个叶子重合，所以往左边和下边多了一点点
+ */
+.leave-new {
+    display: block;
+    position: absolute;
+    width: var(--leave-width);
+    height: var(--leave-height);
+    background: rgb(124, 233, 124);
+    left: calc( var(--leaves-width) / 2 );
+    top: calc( var(--leaves-height) / 2 - var(--leave-height) );
+    background: #0f0;
+    border-radius: calc(var(--leave-width) / 2) calc(var(--leave-width) / 2) 0px 3px;
+    transform: rotate(var(--leave-intial-degree));
+    transform-origin: -2% 102%;
+    
+}
+
+/* 这里的前六行代码是对主元素的复制
+   不同的是旋转的方式
+   原来的代码采用的是
+   transform-origin: 5% 100%;
+   transform: translate(calc(var(--leave-width) / -2), calc(var(--leave-width) / 2));
+    上面实际上是依照元素的x轴50%和y轴100%的点旋转
+
+    而我换了一种方式
+    transform-origin: 0% 100%;
+    transform: rotate(90deg) translateX(calc(var(--leave-width) / -1));
+    我是用元素的左下角的点作为旋转点，然后左移100%
+*/
+.leave-new::after {
+    content: '';
+    position: absolute;
+    width: var(--leave-width);
+    height: var(--leave-height);
+    background: #0f0;
+    border-radius: calc(var(--leave-width) / 2) calc(var(--leave-width) / 2) 3px 0px;
+    
+    transform: rotate(90deg) translateX(calc(var(--leave-width) / -1));
+    /* transform: translate(calc(var(--leave-width) / -2), calc(var(--leave-width) / 2)); */
+    transform-origin: 0% 100%;
+}
+
+
+.leave-three-new { 
+    display: block;
+    position: absolute;
+    width: var(--leave-width);
+    height: var(--leave-height);
+    background: rgb(124, 233, 124);
+    left: calc( var(--leaves-width) / 2 );
+    top: calc( var(--leaves-height) / 2 - var(--leave-height) );
+    border-radius: calc(var(--leave-width) / 2) calc(var(--leave-width) / 2) 0px 0px;
+    transform: rotate(var(--leave-three-intial-degree));
+    transform-origin: -2% 102%; 
+    
+}
+
+.leave-three-new::before {
+    content: '';
+    position: absolute;
+    width: var(--leave-width);
+    height: var(--leave-height);
+    background: rgb(124, 233, 124);
+    border-radius: calc(var(--leave-width) / 2) calc(var(--leave-width) / 2) 0px 0px;
+    transform: rotate(120deg) translateX(calc(var(--leave-width) / -1));
+    transform-origin: 0% 100%;
 }
 
 .leave:after {
     content: '';
     position: absolute;
-    width: 10px;
-    height: 16px;
+    width: var(--leave-width);
+    height: var(--leave-height);
     background: #0f0;
-    border-radius: 5px 5px 3px 0px;
+    border-radius: calc(var(--leave-width) / 2) calc(var(--leave-width) / 2) 3px 0px;
+    /* Step3 - construct heart leave */
+
+    /* Step3-2 - 叶子的另一瓣旋转并且移动,这里移动的距离是宽度的一般 */
     transform-origin: 50% 100%;
-    transform: rotate(90deg) translate(-5px, 5px);
+    transform: rotate(90deg) translate(calc(var(--leave-width) / -2), calc(var(--leave-width) / 2));
 }
 
+
+/* Step4 adjust the angle of four leave */
 .angleN {
-    transform: rotate(-45deg);
+    transform: rotate(var(--leave-intial-degree));
 }
 .angleS {
-    transform: rotate(135deg);
+    transform: rotate(calc(var(--leave-intial-degree) * -3 ));
 }
 .angleW {
-    transform: rotate(-135deg);
+    transform: rotate(calc(var(--leave-intial-degree) * 3 ));
 }
 .angleE {
-    transform: rotate(45deg);
+    transform: rotate(calc(var(--leave-intial-degree) * -1 ));
 }
 
 .leave-three {
     display: block;
     position: absolute;
-    width: 10px;
-    height: 12px;
+    width: var(--leave-three-width);
+    height: var(--leave-three-height);
+    left: calc( var(--leaves-width) / 2 );
+    top: calc( var(--leaves-height) / 2 - var(--leave-height) );
     background: #0f0;
-    border-radius: 5px 5px 0px 0px;
+    border-radius: calc(var(--leave-three-width) / 2) calc(var(--leave-three-width) / 2) 0px 0px;
     transform-origin: -2% 102%;
-    left: 17px;
-    top: 4px;
+    
 }
 
+.leave-three:hover{
+    background: #219b21;
+}
+
+
+/* 
+    step5 three leaves need to adjust transform and transform-origin 
+    step5 1. the params above need adjust according width and height
+ */
 .leave-three::before {
     content: '';
     position: absolute;
-    top:0;
-    left:0;
-    width: 10px;
-    height: 12px;
+    /* top:0;
+    left:0; */
+    width: var(--leave-three-width);
+    height: var(--leave-three-height);
     background: #0f0;
-    border-radius: 5px 5px 0px 0px;
-    transform: rotate(120deg) translate(5px,8px);
-    transform-origin: 100% 100%;
+    border-radius: calc(var(--leave-three-width) / 2) calc(var(--leave-three-width) / 2) 0px 0px;
+    transform: rotate(var(--leave-three-intial-degree)) translate(calc(var(--leave-width) / 2),calc(var(--leave-three-height) * 0.76));
+    transform-origin: 93% 106%;
 }
 
+
+/*  step6 every leave has different color
+    step6 1, when hover the leave, it changes its color
+  */
+.leave-three:hover::before {
+    background: #219b21;
+}
+
+
 .angle1 {
-    transform: rotate(0deg)
+    transform: rotate(0deg);
+}
+
+.leave-three.angle2::before {
+    background: red;
+}
+
+.leave-three.angle2:hover::before {
+    background: #f08a8a;
 }
 
 .angle2 {
-    transform: rotate(120deg)
+    transform: rotate(var(--leave-three-intial-degree));
+    /* background: red; */
+}
+
+.angle2:hover{
+    background: #f08a8a;
+}
+
+.leave-three.angle3::before {
+    background: blue;
+}
+
+.leave-three.angle3:hover::before {
+    background: #6d64ee;
 }
 
 .angle3 {
-    transform: rotate(2400deg)
+    transform: rotate(calc( var(--leave-three-intial-degree) * 2 ));
+    /* background: blue; */
+}
+
+.angle3:hover{
+    background: #6d64ee;
 }
 
 .branch {
     position: absolute;
-    height: 40px;
-    width: 40px;
-    left: 15px;
-    top: -4px;
+    /* height: 40px;
+    width: 40px; */
+    width: var(--branch-width);
+    height: var(--branch-height);
+    left: var(--branch-left-offset);
+    top: var(--branch-top-offset);
 }
 
 .branch::before {
     content: '';
     display: block;
-    width: 40px;
-    height: 50px;
-    border-bottom: 2px solid #219b21;
-    border-radius: 50px 50px 25px 150px;
+    position: absolute;
+    width: var(--branch-width);
+    height: calc( var(--branch-height) + 10px );
+    border-bottom: var(--branch-thickness) solid #219b21;
+    border-radius: 0px 0px var(--branch-left-range) var(--branch-right-range);
     left: 0;
     top:-8px;
 }

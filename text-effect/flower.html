@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>丝感花瓣背景</title>
+<style>
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: #fff6f7;
+    overflow: hidden;
+  }
+
+  body {
+    position: relative;
+  }
+
+  .petals {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+  }
+
+  .petal {
+    position: absolute;
+    width: 100px;
+    height: 140px;
+    background:
+      linear-gradient(120deg, rgba(255 192 203 / 0.3) 0%, rgba(255 182 193 / 0.15) 70%, transparent 100%),
+      repeating-linear-gradient(
+        135deg,
+        rgba(255 192 203 / 0.1),
+        rgba(255 192 203 / 0.1) 2px,
+        transparent 4px,
+        transparent 8px
+      );
+    background-blend-mode: screen;
+    filter: drop-shadow(0 0 5px rgba(255 182 193 / 0.3));
+    clip-path: polygon(
+      50% 0%,   /* 花瓣尖 */
+      80% 20%,
+      95% 50%,
+      80% 80%,
+      50% 100%, /* 花瓣底部 */
+      20% 80%,
+      5% 50%,
+      20% 20%
+    );
+    opacity: 0.35;
+    transform-origin: center bottom;
+    animation:
+      floatUp 20s linear infinite,
+      sway 6s ease-in-out infinite,
+      shine 4s linear infinite;
+  }
+
+  /* 光泽滑动 */
+  @keyframes shine {
+    0% {
+      background-position: -200px 0, 0 0;
+    }
+    100% {
+      background-position: 200px 0, 0 0;
+    }
+  }
+
+  /* 上升漂浮 */
+  @keyframes floatUp {
+    0% {
+      transform: translateY(110vh) rotate(0deg) scale(0.8);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.35;
+    }
+    100% {
+      transform: translateY(-150px) rotate(360deg) scale(1);
+      opacity: 0;
+    }
+  }
+
+  /* 微摆动 */
+  @keyframes sway {
+    0%, 100% {
+      transform: rotate(-4deg);
+    }
+    50% {
+      transform: rotate(4deg);
+    }
+  }
+
+  /* 多个花瓣随机位置、延迟、速度 */
+  .petal:nth-child(1) {
+    left: 15vw;
+    animation-delay: 0s, 0s, 0s;
+  }
+  .petal:nth-child(2) {
+    left: 35vw;
+    animation-delay: 5s, 2s, 1s;
+    animation-duration: 18s, 7s, 5s;
+  }
+  .petal:nth-child(3) {
+    left: 50vw;
+    animation-delay: 10s, 3s, 2s;
+    animation-duration: 22s, 8s, 4s;
+  }
+  .petal:nth-child(4) {
+    left: 70vw;
+    animation-delay: 15s, 1s, 3s;
+    animation-duration: 19s, 6s, 6s;
+  }
+  .petal:nth-child(5) {
+    left: 85vw;
+    animation-delay: 20s, 4s, 0s;
+    animation-duration: 20s, 7s, 5s;
+  }
+
+  /* 整体柔光光晕叠加层 */
+  .glow-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(255 192 203 / 0.12), transparent 60%),
+      radial-gradient(circle at 70% 80%, rgba(255 182 193 / 0.1), transparent 50%);
+    mix-blend-mode: screen;
+    animation: glowPulse 8s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% {
+      opacity: 0.15;
+    }
+    50% {
+      opacity: 0.25;
+    }
+  }
+
+</style>
+</head>
+<body>
+  <div class="petals">
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+  </div>
+  <div class="glow-overlay"></div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #e0e0e0; /* 页面背景色，用于展示镂空效果 */
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.container {
+  position: relative; /* 确保图片能被定位 */
+  width: 800px; /* 容器宽度与 SVG viewbox 匹配 */
+  height: 600px; /* 容器高度与 SVG viewbox 匹配 */
+  background-color: #ccc; /* 图片透明区域会显示这个背景 */
+  overflow: hidden; /* 防止图片溢出容器 */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
+}
+
+.clipped-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 确保图片覆盖整个容器 */
+  
+  /* 核心：引用 SVG 中定义的 clipPath */
+  clip-path: url(#text-clip);
+  
+  /* 兼容性前缀 */
+  -webkit-clip-path: url(#text-clip);
+}
+
+/* SVG 元素的样式 */
+svg {
+  /* 将 SVG 隐藏起来，它只提供裁剪路径，本身不需要显示 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none; /* 防止 SVG 拦截鼠标事件 */
+}
+
+/* SVG text 的字体设置 */
+#text-clip text {
+  font-family: 'Impact', sans-serif; /* 使用粗体字体效果更好 */
+  fill: black; /* 填充颜色不重要，因为它只定义形状 */
+  /* 文字定位和对齐 */
+  text-anchor: middle;
+  dominant-baseline: middle; /* 垂直居中 */
+}
+
+.description {
+  text-align: center;
+  font-size: 1.1em;
+  line-height: 1.6;
+  max-width: 700px;
+}

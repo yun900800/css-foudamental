@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>5列 4行 CSS Grid 完美复刻</title>
+  <style>
+    /* 1. 父容器：严格定义 5列 4行 */
+    .grid-container {
+      display: grid;
+      /* 5列：每列等宽 */
+      grid-template-columns: repeat(5, 1fr); 
+      /* 4行：每行等高（这里暂定120px，可根据需要调整） */
+      grid-template-rows: repeat(4, 120px); 
+      gap: 15px;      /* 格子间距 */
+      width: 750px;   /* 5列较宽，适当加大容器总宽度 */
+      margin: 50px auto;
+    }
+
+    /* 2. 黄色块基础样式 */
+    .item {
+      background-color: #ffe600; /* 亮黄色 */
+      border-radius: 4px;
+    }
+
+    /* 3. 9个色块在 5x4 网格中的精准定位 */
+
+    /* === 第 1 列的 4 个垂直方块 === */
+    .item-1 { grid-column: 1; grid-row: 1; }
+    .item-2 { grid-column: 1; grid-row: 2; }
+    .item-3 { grid-column: 1; grid-row: 3; }
+    .item-4 { grid-column: 1; grid-row: 4; }
+
+    /* === 第 2 行的横向长条 === */
+    /* 位于第2行，横跨第2、3列 */
+    .item-5 { 
+      grid-column: 2 / span 2; 
+      grid-row: 2; 
+    }
+
+    /* === 右下角的 $2 \times 2$ 巨型大方块 === */
+    /* 位于第3、4行，横跨第2、3列 */
+    .item-6 { 
+      grid-column: 3 / span 2; 
+      grid-row: 3 / span 2; 
+    }
+
+    /* === 其他散落的独立方块 === */
+    .item-7 { grid-column: 3 / 4; grid-row: 1; } /* 第1行，第2列 */
+    .item-8 { grid-column: 5; grid-row: 1; } /* 第1行，第5列 */
+    .item-9 { grid-column: 5; grid-row: 3; } /* 第3行，第5列 */
+
+    /* 注：第4列整列留空，第5列的第2、4行留空 */
+  </style>
+</head>
+<body>
+
+  <div class="grid-container">
+    <div class="item item-1"></div>
+    <div class="item item-2"></div>
+    <div class="item item-3"></div>
+    <div class="item item-4"></div>
+
+    <div class="item item-5"></div> <div class="item item-6"></div> <div class="item item-7"></div>
+    <div class="item item-8"></div>
+    <div class="item item-9"></div>
+  </div>
+
+</body>
+</html>

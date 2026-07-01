@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    .nav {
+  display: flex;
+  justify-content: space-between;
+  background: #333;
+  align-items: center;
+  color: white;
+  padding: 1em;
+}
+.menu {
+  display: flex;
+  gap: 1em;
+}
+.hamburger {
+  display: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+@media (max-width: 600px) {
+  .menu {
+    display: none;
+    flex-direction: column;
+  }
+  .hamburger {
+    display: block;
+  }
+  .nav.open .menu {
+    display: flex;
+  }
+}
+    
+    </style>
+  <title>Responsive Menu</title>
+</head>
+
+<body>
+    <nav class="nav" id="nav">
+        <div>Logo</div>
+        <div class="menu">
+          <a href="#">首页</a>
+          <a href="#">关于</a>
+          <a href="#">联系</a>
+        </div>
+        <div class="hamburger" onclick="document.getElementById('nav').classList.toggle('open')">☰</div>
+    </nav>
+    <main>
+        <h1>欢迎来到我的网站</h1>
+        <p>这是一个响应式菜单的示例。</p>
+    </main>
+</body>
+
+</html>

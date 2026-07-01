@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录页面</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="page-container">
+        <div class="formContainer">
+            <h1 class="heading">用户登录</h1>
+            <p class="subheading">请输入您的账户信息以继续。</p>
+
+            <form class="form">
+                <div class="formGroup">
+                    <label for="username" class="label">用户名</label>
+                    <input type="text" id="username" class="input" placeholder="请输入用户名" required>
+                </div>
+                
+                <div class="formGroup">
+                    <label for="password" class="label">密码</label>
+                    <input type="password" id="password" class="input" placeholder="请输入密码" required>
+                </div>
+
+                <div class="formGroup">
+                    <a href="#" class="forgot-password">忘记密码？</a>
+                </div>
+
+                <button type="submit" class="button">登录</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

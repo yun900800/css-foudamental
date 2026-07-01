@@ -1,0 +1,65 @@
+/* 容器基础样式 */
+.menu-button {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* 所有线条的默认样式 (初始状态) */
+.line {
+    width: 100%;
+    height: 6px;
+    background-color: #333;
+    border-radius: 3px;
+    
+    /* 关键：定义所有可变属性的过渡效果 */
+    transition: 
+        transform 0.4s ease-in-out, /* 用于旋转和位移 */
+        opacity 0.4s ease-in-out,    /* 用于隐藏线条 */
+        background-color 0.4s;       /* 用于变色 */
+}
+
+/* ================== 状态 1: 展开 (is-open) ================== */
+
+.menu-button.is-open .line-1 {
+    transform: translateY(27px) rotate(45deg); /* 位移并旋转形成 X 的上半部分 */
+}
+
+.menu-button.is-open .line-2 {
+    opacity: 0; /* 中间线条隐藏 */
+}
+
+.menu-button.is-open .line-3 {
+    transform: translateY(-27px) rotate(-45deg); /* 位移并旋转形成 X 的下半部分 */
+}
+
+/* ================== 状态 2: 警告 (is-warning) ================== */
+
+.menu-button.is-warning .line-1 {
+    /* 变成感叹号的顶部 */
+    transform: translateY(15px) translateX(0) rotate(0);
+    height: 40px;
+    width: 6px;
+    background-color: orange;
+}
+
+.menu-button.is-warning .line-2 {
+    /* 中间线条彻底隐藏 */
+    opacity: 0; 
+    transform: scaleX(0); /* 确保它不会干扰 */
+}
+
+.menu-button.is-warning .line-3 {
+    /* 变成感叹号的底部点 */
+    transform: translateY(-5px) translateX(0) rotate(0);
+    height: 6px;
+    width: 6px;
+    background-color: orange;
+}

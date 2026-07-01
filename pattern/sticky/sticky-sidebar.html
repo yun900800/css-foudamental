@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>目录固定侧边栏</title>
+    <link rel="stylesheet" href="sidebar-style.css">
+</head>
+<body>
+    <div class="page-layout">
+        <aside class="sticky-sidebar">
+            <nav>
+                <h3>文章目录</h3>
+                <ul>
+                    <li><a href="#intro">引言</a></li>
+                    <li><a href="#section-a">第一部分：核心概念</a></li>
+                    <li><a href="#section-b">第二部分：实践应用</a></li>
+                    <li><a href="#conclusion">结论</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <h1>我的长篇文章</h1>
+            <p>这是一篇很长的文章，我们将用它来测试侧边栏的粘性。</p>
+
+            <section id="intro" style="height: 100vh;">
+                <h2>引言</h2>
+                <p>文章的开头，介绍主题和目的。</p>
+            </section>
+
+            <section id="section-a" style="height: 100vh;">
+                <h2>第一部分：核心概念</h2>
+                <p>详细阐述核心概念。</p>
+            </section>
+
+            <section id="section-b" style="height: 100vh;">
+                <h2>第二部分：实践应用</h2>
+                <p>讨论如何在实践中应用这些概念。</p>
+            </section>
+
+            <section id="conclusion" style="height: 100vh;">
+                <h2>结论</h2>
+                <p>总结全文，并展望未来。</p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 关键: 设置透视效果，创造景深 */
+    perspective: 1200px;
+}
+
+.slider {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 开启3D变换空间 */
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease-in-out;
+}
+
+.slider .slides {
+    position: absolute;
+    width: 420px;
+    height: 480px;
+    background: var(--img);
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    transition: transform 0.8s ease-in-out, z-index 0s 0.8s;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+/* 默认状态下，所有卡牌堆叠在后方 */
+.slider .slides:not(.active) {
+    transform: translateZ(-200px) rotateY(-10deg);
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* 激活状态的卡牌 */
+.slider .slides.active {
+    transform: translateZ(200px);
+    z-index: 100;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.buttons {
+    position: absolute;
+    bottom: 15px;
+    display: flex;
+    gap: 20px;
+    z-index: 200;
+}
+
+.buttons span {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: #111;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.buttons span::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-top: 4px solid #fff;
+    border-left: 4px solid #fff;
+    transform: rotate(315deg) translate(2px,2px);
+}
+
+.buttons span:nth-child(2)::before {
+    transform: rotate(135deg) translate(2px,2px);
+}
+
+.buttons span:active {
+    opacity: 0.5;
+}
+
+.content {
+    font-size: 1rem;
+    position: relative;
+    padding: 40px;
+    max-width: 600px;
+    transition: 0.6s;
+    transition-delay: 0s;
+    transform: translateY(40px);
+    z-index: 10000;
+    opacity: 0;
+}
+
+.content h2{
+    font-size: 4em;
+    color: #fff;
+}
+
+.content p{
+    color: #fff;
+}
+
+.slider .slides.active .content {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s;
+}
+
+/* 响应式媒体查询 */
+@media (max-width: 900px) {
+    .slider .slides {
+        width: 100px;
+        height: 100px;
+    }
+}

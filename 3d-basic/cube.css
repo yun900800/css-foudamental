@@ -1,0 +1,83 @@
+.cube-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0f0f0;
+    perspective: 1000px;
+}
+
+.cube {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotateCube 10s infinite linear;
+}
+
+.face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 200px;
+    border: 1px solid black;
+    opacity: 0.8;
+    background: rgba(255, 255, 255, 0.5);
+    transition: transform 0.5s;
+}
+
+/* 4. 使用 rotate3d 和 translate3d 定位每个面 */
+.front {
+  /* 沿着 Z 轴向前移动，距离是边长的一半 */
+  transform: rotateY(0deg) translateZ(100px);
+  background-color: lightcoral;
+}
+
+.back {
+  /* 旋转 180 度，然后沿着 Z 轴向前移动 */
+  transform: rotateY(180deg) translateZ(100px);
+  background-color: lightblue;
+}
+
+.left {
+  /* 旋转 -90 度，然后沿着 Z 轴向前移动 */
+  transform: rotateY(-90deg) translateZ(100px);
+  background-color: lightgreen;
+}
+
+.right {
+  /* 旋转 90 度，然后沿着 Z 轴向前移动 */
+  transform: rotateY(90deg) translateZ(100px);
+  background-color: lightgoldenrodyellow;
+}
+
+.top {
+  /* 沿着 X 轴旋转 -90 度，然后沿着 Z 轴向前移动 */
+  transform: rotateX(-90deg) translateZ(100px);
+  background-color: lightseagreen;
+}
+
+.bottom {
+  /* 沿着 X 轴旋转 90 度，然后沿着 Z 轴向前移动 */
+  transform: rotateX(90deg) translateZ(100px);
+  background-color: lightpink;
+}
+
+/* 5. 定义立方体旋转动画 */
+@keyframes rotateCube {
+  from {
+    transform: rotate3d(0, 0, 0, 0deg);
+  }
+  to {
+    transform: rotate3d(1, 1, 0, 360deg);
+  }
+}
+
+/* 添加一个鼠标悬停交互效果，让它暂停并放大 */
+.cube:hover {
+  animation-play-state: paused;
+  transform: scale3d(1.2, 1.2, 1.2);
+}

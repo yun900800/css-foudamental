@@ -1,0 +1,149 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.book-wrapper {
+  /* 定义 3D 舞台的透视效果 */
+  perspective: 1500px; /* 增加透视距离，让效果更明显 */
+  width: 300px;
+  height: 450px;
+  position: relative;
+  /* 辅助查看，实际项目中可以移除 */
+  border: 1px solid #ccc; 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.book {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  /* 确保子元素在 3D 空间中保持转换 */
+  transform-style: preserve-3d;
+  transition: transform 10s; /* 整个书本的旋转过渡 */
+  transform-origin: left center; /* 书本整体旋转的轴心 */
+}
+
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fefefe;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  color: #555;
+  backface-visibility: hidden; /* 隐藏页面背面 */
+  transform-origin: left center; /* 页面翻转的轴心：书脊 */
+  transition: transform 1s ease-in-out; /* 页面翻转的过渡效果 */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  /* 初始时，除了封面，所有页面都稍微向后旋转一点，模拟叠在一起的感觉 */
+  transform: rotateY(0deg); 
+  /* 确保页面叠放顺序 */
+  z-index: 10; 
+}
+
+/* 封面和封底特殊样式 */
+.page-cover {
+  background-color: #2c3e50;
+  color: white;
+  z-index: 20; /* 封面在最上面 */
+}
+
+.page-back-cover {
+  background-color: #2c3e50;
+  color: white;
+  transform: rotateY(180deg); /* 封底初始朝向背面 */
+  z-index: 5;
+}
+
+/* 为确保页面叠放层次，逐渐递减 z-index */
+.page-1 { z-index: 19; }
+.page-2 { z-index: 18; }
+.page-3 { z-index: 17; }
+.page-4 { z-index: 16; }
+
+/*
+   ----- 翻页动画 -----
+*/
+
+/* 鼠标悬停在书本容器上时触发 */
+.book-wrapper:hover .book {
+  /* 可以稍微打开书本，增加立体感 */
+  transform: rotateY(10deg); 
+}
+
+.book-wrapper:hover .page-cover {
+  transform: rotateY(-180deg); /* 封面翻转 */
+  transition-delay: 0.1s; /* 延迟翻转 */
+  z-index: 10; /* 翻转后调整 z-index */
+}
+
+.book-wrapper:hover .page-1 {
+  transform: rotateY(-180deg); /* 第一页翻转 */
+  transition-delay: 0.2s; /* 延迟翻转 */
+  z-index: 11;
+}
+
+.book-wrapper:hover .page-2 {
+  transform: rotateY(-180deg); /* 第二页翻转 */
+  transition-delay: 0.3s;
+  z-index: 12;
+}
+
+.book-wrapper:hover .page-3 {
+  transform: rotateY(-180deg); /* 第三页翻转 */
+  transition-delay: 0.4s;
+  z-index: 13;
+}
+
+.book-wrapper:hover .page-4 {
+  transform: rotateY(-180deg); /* 第四页翻转 */
+  transition-delay: 0.5s;
+  z-index: 14;
+}
+/* 封底保持不变，它已经是背面了 */
+/* .book-wrapper:hover .page-back-cover { ... } */
+
+
+
+ol li {
+  counter-increment: muffins;
+}
+
+ol li:before {
+  content: counter(muffins) ". ";
+  color: hotpink;
+  font-weight: 600;
+  font-family: cursive;
+}
+
+ol {
+  list-style: none;
+  counter-reset: muffins;
+}
+
+ol {
+  counter-reset: cupcake;
+  padding-left: 32px;
+}
+ol li {
+  counter-increment: cupcake;
+}
+ol li:before {
+  content: counters(cupcake, '.') ' ';
+  /* Whatever custom styles you want here */
+  color: rgb(129, 50, 219);
+  font-weight: bold;
+  font-family: cursive;
+}

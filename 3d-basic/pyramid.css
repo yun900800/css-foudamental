@@ -1,0 +1,63 @@
+/* 场景透视 */
+.scene {
+  width: 200px;
+  height: 200px;
+  margin: 100px auto;
+  perspective: 800px;
+}
+
+/* 金字塔容器 */
+.pyramid {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: rotatePyramid 10s linear infinite;
+}
+
+@keyframes rotatePyramid {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(360deg); }
+}
+
+/* 侧面三角形 */
+.side {
+  position: absolute;
+  width: 200px;
+  height: 141.42px;     /* <-- ❗必须是这个真实几何高度 */
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  transform-origin: 50% 100%;
+  backface-visibility: hidden;
+}
+
+/* 前 */
+.front {
+  background: rgba(255,165,0,0.7);
+  transform: rotateX(45deg) translateZ(100px);
+}
+
+/* 后 */
+.back {
+  background: rgba(0,191,255,0.7);
+  transform: rotateY(180deg) rotateX(45deg) translateZ(100px);
+}
+
+/* 左 */
+.left {
+  background: rgba(144,238,144,0.7);
+  transform: rotateY(-90deg) rotateX(45deg) translateZ(100px);
+}
+
+/* 右 */
+.right {
+  background: rgba(221,160,221,0.7);
+  transform: rotateY(90deg) rotateX(45deg) translateZ(100px);
+}
+
+/* 底面（正方形） */
+.base {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(173, 35, 35, 0.9);
+  transform: rotateX(90deg);
+}

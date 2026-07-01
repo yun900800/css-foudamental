@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    .nav {
+      background: #333;
+      color: white;
+      padding: 1em;
+    }
+    .nav label {
+      display: none;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+    .nav input {
+      display: none;
+    }
+    .nav .menu {
+      display: flex;
+      gap: 1em;
+    }
+    .nav .menu a {
+      color: white;
+      text-decoration: none;
+    }
+    
+    /* 响应式：小屏幕时使用汉堡菜单 */
+    @media (max-width: 600px) {
+      .nav label {
+        display: block;
+      }
+      .nav .menu {
+        display: none;
+        flex-direction: column;
+        margin-top: 1em;
+      }
+      .nav input:checked + .menu {
+        display: flex;
+      }
+    }
+    </style>
+  <title>Responsive Menu with purl css</title>
+</head>
+
+<body>
+    <nav class="nav">
+        <label for="menu-toggle">☰</label>
+        <input type="checkbox" id="menu-toggle" />
+        <div class="menu">
+          <a href="#">首页</a>
+          <a href="#">关于</a>
+          <a href="#">联系</a>
+        </div>
+      </nav>
+</body>
+
+</html>

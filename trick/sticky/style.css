@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* 英雄区域 (Hero Section) */
+.hero-section {
+    background-color: #3498db;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    height: 300px; /* 足够的高度让导航栏有机会“吸顶” */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-section h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.hero-section p {
+    font-size: 1.2em;
+}
+
+/* 吸顶导航栏 (Sticky Navbar) */
+.sticky-navbar {
+    background-color: #2c3e50; /* 深色背景 */
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    width: 100%; /* 宽度撑满 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 阴影增加立体感 */
+
+    /* 核心属性 */
+    position: sticky;
+    top: 0; /* 当滚动到视口顶部时，导航栏固定 */
+    z-index: 1000; /* 确保导航栏在其他内容之上 */
+}
+
+.sticky-navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* 使用 Flexbox 让链接水平排列 */
+    justify-content: center;
+}
+
+.sticky-navbar li {
+    margin: 0 20px;
+}
+
+.sticky-navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 5px 0;
+    transition: color 0.3s ease; /* 鼠标悬停颜色过渡 */
+}
+
+.sticky-navbar a:hover {
+    color: #3498db; /* 悬停时蓝色 */
+}
+
+/* 内容区域 (Content Section) */
+.content-section {
+    padding: 40px 20px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.content-section section {
+    margin-bottom: 60px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.content-section h2 {
+    color: #2c3e50;
+    font-size: 2em;
+    margin-top: 0;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* 页脚 (Footer) */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>宇宙感首屏</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(ellipse at center, #0b0c10 0%, #000000 100%);
+      overflow: hidden;
+      height: 100%;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .stars {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0;
+    }
+    .title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.5);
+      font-size: 3em;
+      letter-spacing: 0.1em;
+      opacity: 0;
+      text-shadow: 0 0 10px rgba(255,255,255,0.7);
+    }
+    .meteor {
+      position: absolute;
+      width: 2px;
+      height: 100px;
+      background: linear-gradient(to bottom, white, transparent);
+      opacity: 0;
+      transform: rotate(45deg);
+    }
+  </style>
+</head>
+<body>
+
+<div class="title">星辰大海</div>
+
+<!-- 生成 100 颗星星 -->
+<script>
+  for (let i = 0; i < 100; i++) {
+    const star = document.createElement('div');
+    star.className = 'stars';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.width = star.style.height = Math.random() * 2 + 1 + 'px';
+    document.body.appendChild(star);
+  }
+</script>
+
+<div class="meteor"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+  // 星星淡入 + 闪烁
+  const stars = document.querySelectorAll('.stars');
+  stars.forEach(star => {
+    gsap.to(star, {
+      opacity: Math.random(),
+      repeat: -1,
+      yoyo: true,
+      duration: Math.random() * 2 + 1,
+      delay: Math.random() * 3
+    });
+  });
+
+  // 文字从远处飞入
+  gsap.to(".title", {
+    opacity: 1,
+    scale: 1,
+    duration: 3,
+    ease: "power2.out"
+  });
+
+  // 流星划过
+  const meteor = document.querySelector(".meteor");
+  function shootMeteor() {
+    meteor.style.top = Math.random() * 20 + '%';
+    meteor.style.left = Math.random() * 80 + '%';
+    gsap.fromTo(meteor, {
+      opacity: 1,
+      y: -100
+    }, {
+      y: 600,
+      opacity: 0,
+      duration: 1.5,
+      ease: "power2.in",
+      onComplete: () => {
+        // 随机过几秒再来
+        setTimeout(shootMeteor, Math.random() * 5000 + 2000);
+      }
+    });
+  }
+  shootMeteor();
+</script>
+</body>
+</html>

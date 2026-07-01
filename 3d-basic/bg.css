@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.pattern {
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    animation: animationBg 10s ease-in-out infinite;
+}
+
+@keyframes animationBg {
+    0%, 100% {
+        /* rotate 默认的值是绕着Z轴旋转 */
+        /* 通过将元素放大到足以覆盖整个视口，然后让父容器隐藏溢出部分，
+         * 来确保在旋转过程中，屏幕上不会出现元素边界与背景之间的空隙。 
+         */
+        transform: scale(1.6) rotate(-15deg);
+    }
+    50% {
+        transform: scale(1.6) rotate(15deg);
+    }
+}
+
+.pattern .face {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    background: url(check.jpg);
+    background-size: 100px 100px;
+    animation: animate 1s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        /* 实际的值是 background-position: 0 0;*/
+        background-position: 0;
+    }
+    100% {
+        /* 实际的值是 background-position: 100px 0;*/
+        background-position: 100px;
+    }
+}
+
+.pattern .face.face2 {
+    height: 100vh;
+    transform-origin: top;
+    transform: rotateX(70deg);
+}
+
+.pattern .face1::before {
+    content:'';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 125px;
+    /* 
+     *
+     * 渐变的角度和普通的笛卡尔坐标系不一样哈 
+     * CSS $0\deg$ 像烟囱，是 垂直向上 的！
+     * 顺时针增加
+    */
+    background: linear-gradient(0deg, rgba(0,0,0,0.5), transparent);
+}
+
+.pattern .face2::before {
+    content:'';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 125px;
+    /* 
+     *
+     * 渐变的角度和普通的笛卡尔坐标系不一样哈 
+     * CSS $0\deg$ 像烟囱，是 垂直向上 的！
+     * 顺时针增加
+    */
+    background: linear-gradient(180deg, rgba(0,0,0,0.5), transparent);
+}
+
+
+/*
+ * 移动设备优化：禁用 3D 旋转动画
+ * 当屏幕宽度小于等于 768px 时生效
+ */
+@media (max-width: 768px) {
+    /* 1. 禁用 .pattern 上的 3D 旋转动画 */
+    .pattern {
+        /* 移除 animationBg 动画 */
+        animation: none; 
+        
+        /* 移除 3D 变换的起点和景深 */
+        transform-style: flat; /* 也可以使用 transform-style: initial; 或 none */
+        perspective: none; 
+
+        /* 移除旋转后的放大，恢复到原始状态 */
+        /* 注意：这里需要确保它不会在没有动画的情况下跳到 rotate(-15deg) 的状态 */
+        transform: none; 
+    }
+
+    /* 2. 可选：确保 .pattern .face2 在 2D 模式下恢复到正常视角 */
+    /* 否则它会保持 70 度的倾斜，可能导致内容不可见或奇怪的裁剪 */
+    .pattern .face.face2 {
+        transform: none;
+    }
+}

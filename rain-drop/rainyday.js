@@ -62,7 +62,9 @@ RainyDay.prototype.initialize = function(options) {
     document.getElementsByTagName('body')[0]
   var parentOffset = window.getOffset(sourceParent)
 
+  // 创建一个缩小的与原始图像同比例的canvas
   this.imgDownscaled = this.customDrop || downscaleImage(this.img, 50)
+  // 如果有声音选项，则播放声音
   if (options.sound) {
     playSound(options.sound)
   }
@@ -97,6 +99,7 @@ RainyDay.prototype.initialize = function(options) {
   }
   this.options = options
 
+  // 雨滴数组
   this.drops = []
 
   // prepare canvas elements
@@ -118,6 +121,8 @@ RainyDay.prototype.initialize = function(options) {
 }
 
 /**
+ * 创建一个canvas元素来覆盖给定的元素(一般是一幅图像)
+ * 同时绑定resize事件
  * Create the main canvas over a given element
  * @returns HTMLElement the canvas
  */

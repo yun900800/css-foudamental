@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enhanced Cloud Scene with Depth</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: linear-gradient(to top, #ffd1a3 0%, #ffc680 30%, #c2d9f0 70%, #a0c8f0 100%);
+    }
+
+    .cloud {
+      position: absolute;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(200,200,200,0.6));
+      border-radius: 50%;
+      box-shadow:
+        0 20px 80px rgba(0,0,0,0.35),
+        inset 0 0 50px rgba(255,255,255,0.6);
+      filter: blur(3px) brightness(1.3);
+      opacity: 0.85;
+      animation: floatCloud linear infinite;
+      transition: all 1s ease;
+    }
+
+    @keyframes floatCloud {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(220vw); }
+    }
+
+    .sunset {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 80%;
+      background: radial-gradient(ellipse at bottom, rgba(255,180,100,0.5), transparent);
+    }
+  </style>
+</head>
+<body>
+  <div class="sunset"></div>
+  <script>
+    for(let i = 0; i < 7; i++) {
+      const cloud = document.createElement('div');
+      cloud.className = 'cloud';
+      const w = 300 + Math.random()*500;
+      const h = 100 + Math.random()*160;
+      cloud.style.width = w + 'px';
+      cloud.style.height = h + 'px';
+      cloud.style.top = (5 + Math.random()*65)+'%';
+      cloud.style.left = (-700 - Math.random()*500)+'px';
+      cloud.style.opacity = 0.65 + Math.random()*0.35;
+      cloud.style.filter = `blur(${2 + Math.random()*3}px) brightness(1.2)`;
+      cloud.style.animationDuration = (80 + Math.random()*60)+'s';
+      cloud.style.zIndex = Math.floor(Math.random()*3);
+      document.body.appendChild(cloud);
+    }
+  </script>
+</body>
+</html>

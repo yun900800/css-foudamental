@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      background: #333;
+      align-items: center;
+      color: white;
+      padding: 1em;
+      position: relative; /* Position relative to allow menu control */
+    }
+
+    .menu {
+      display: flex;
+      gap: 1em;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .menu {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #333;
+        padding: 1em;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Added background overlay when menu is open */
+      .nav.open .menu {
+        display: flex;
+      }
+
+      .nav.open::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        z-index: 999; /* Under the menu but above the main content */
+        display: block;
+      }
+
+      .hamburger {
+        display: block;
+        position: relative;
+        z-index: 1001; /* Above the overlay */
+      }
+    }
+
+  </style>
+  <title>Responsive Menu</title>
+</head>
+
+<body>
+  <nav class="nav" id="nav">
+    <div>Logo</div>
+    <div class="menu">
+      <a href="#">首页</a>
+      <a href="#">关于</a>
+      <a href="#">联系</a>
+    </div>
+    <div class="hamburger" onclick="document.getElementById('nav').classList.toggle('open')">☰</div>
+  </nav>
+  <main>
+    <h1>欢迎来到我的网站</h1>
+    <p>这是一个响应式菜单的示例。</p>
+  </main>
+</body>
+
+</html>

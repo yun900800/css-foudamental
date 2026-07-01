@@ -1,0 +1,132 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+    color: #333;
+    background-color: #f8f8f8;
+}
+
+.page-header {
+    background-color: #4a90e2; /* A nice blue */
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.page-header h1 {
+    font-size: 2.8em;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+/* --- Main Layout using Flexbox --- */
+.main-layout {
+    display: flex; /* Use Flexbox to create two columns */
+    max-width: 1200px; /* Limit overall width */
+    margin: 0 auto; /* Center the layout */
+    padding: 0 20px; /* Padding on sides */
+    gap: 40px; /* Space between main content and sidebar */
+    align-items: flex-start; /* Aligns items to the start of the cross-axis (top) */
+}
+
+.main-content {
+    flex: 3; /* Main content takes 3 parts of available space */
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.main-content section {
+    margin-bottom: 40px;
+}
+
+.main-content h2 {
+    color: #2c3e50;
+    font-size: 2.2em;
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4a90e2;
+    margin-bottom: 20px;
+}
+
+/* --- Sidebar Styles --- */
+.sidebar-right {
+    flex: 1; /* Sidebar takes 1 part of available space */
+    /*
+     * The crucial part for sticky positioning:
+     * The sticky element must be inside a scrolling container.
+     * The 'main-layout' is the parent container for both 'main-content' and 'sidebar-right'.
+     * The 'sidebar-right' itself is NOT sticky.
+     * The 'table-of-contents' and 'ad-block' INSIDE the sidebar are sticky.
+     */
+     height: 1000vh; /* 这个属性控制容器的高度，在滚动的时候能一直保持sticky的元素 */
+}
+
+.table-of-contents,
+.ad-block {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px; /* Space between sticky elements if multiple */
+
+    /* Core Sticky Properties */
+    position: sticky;
+    top: 30px; /* When scrolling, stick 30px from the top of the viewport */
+    z-index: 900; /* Ensure it stays above other content but below any sticky nav bar */
+}
+
+.table-of-contents h3,
+.ad-block h3 {
+    color: #4a90e2;
+    font-size: 1.5em;
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.table-of-contents ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.table-of-contents li {
+    margin-bottom: 8px;
+}
+
+.table-of-contents a {
+    color: #555;
+    text-decoration: none;
+    font-size: 1.05em;
+    transition: color 0.3s ease;
+}
+
+.table-of-contents a:hover,
+.table-of-contents a:focus {
+    color: #4a90e2;
+    text-decoration: underline;
+}
+
+.ad-block p {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+}
+
+/* --- Footer --- */
+.page-footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 50px;
+}

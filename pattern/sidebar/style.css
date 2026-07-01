@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.layout {
+    display: flex;
+    height: 100vh;
+}
+.sidebar {
+    width: 60px;
+    background: #333;
+    color: white;
+    padding: 1em;
+}
+.main {
+    flex: 1;
+    padding: 2em;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery Options - Grid 1 | Jen Simmons Labs</title>
+    <style>
+        /* ==========================================================================
+           1. 基础重置与页面样式
+           ========================================================================== */
+        * { 
+            box-sizing: border-box; 
+        }
+        
+        body {
+            margin: 0;
+            padding: 4vw;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            font-weight: 300;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        /* ==========================================================================
+           2. 核心 Grid 布局代码（图片画廊）
+           ========================================================================== */
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            
+            /* 声明网格环境 */
+            display: grid;
+            /* 采用内在设计：每列最小 150px，最大平分 */
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            /* 网格间距 */
+            grid-gap: 1vw;
+            
+            /* 💡 提示：你可以手动在这里切换 dense 属性来观察我们之前讨论的效果 */
+            grid-auto-flow: dense;
+        }
+
+        li {
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* 让图片完美自适应格子，保持高度并裁剪撑满 */
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ==========================================================================
+           3. 显式指定某些元素的大小（创造多行多列的“大块头”）
+           ========================================================================== */
+        
+        /* 让第 2 个和第 10 个元素横跨 2 列 */
+        li:nth-child(2),
+        li:nth-child(10) {
+            grid-column-end: span 2;
+        }
+
+        /* 让第 6 个元素同时横跨 2 列和 2 行（就是我们讨论的那个巨无霸） */
+        li:nth-child(6) {
+            grid-column-end: span 2;
+            grid-row-end: span 2;
+        }
+
+        /* 让第 8 个元素横跨 3 行 */
+        li:nth-child(8) {
+            grid-row-end: span 3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Image Gallery: CSS Grid Auto-placement</h1>
+
+    <ul>
+        <li><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=500&q=80" alt="Image 1"></li>
+        <li><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=500&q=80" alt="Image 2"></li>
+        <li><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=500&q=80" alt="Image 3"></li>
+        <li><img src="https://images.unsplash.com/photo-1472214222541-d510753a4707?auto=format&fit=crop&w=500&q=80" alt="Image 4"></li>
+        <li><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80" alt="Image 5"></li>
+        <li><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=500&q=80" alt="Image 6"></li>
+        <li><img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=500&q=80" alt="Image 7"></li>
+        <li><img src="https://images.unsplash.com/photo-1433832597046-4f10e10ac764?auto=format&fit=crop&w=500&q=80" alt="Image 8"></li>
+        <li><img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=500&q=80" alt="Image 9"></li>
+        <li><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=500&q=80" alt="Image 10"></li>
+        <li><img src="https://images.unsplash.com/photo-1500627869374-13cd993b1115?auto=format&fit=crop&w=500&q=80" alt="Image 11"></li>
+        <li><img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&w=500&q=80" alt="Image 12"></li>
+    </ul>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Transition 示例</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <button id="toggleButton">切换动画</button>
+    <div id="box" class="box"></div>
+
+    <script>
+        const button = document.getElementById('toggleButton');
+        const box = document.getElementById('box');
+
+        // 使用原生 JavaScript 监听点击事件，手动切换类名
+        button.addEventListener('click', () => {
+            box.classList.toggle('move');
+        });
+    </script>
+</body>
+</html>

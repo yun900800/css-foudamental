@@ -1,0 +1,53 @@
+/* 基础布局：使用 Flexbox 或 Grid */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.page-layout {
+    display: flex;
+    gap: 2rem;
+    /* padding: 2rem; */
+}
+
+.content {
+    flex: 1; /* 让主内容区域占据剩余空间 */
+    padding: 2rem;
+}
+
+/* 粘性侧边栏样式 */
+.sticky-sidebar {
+    /* 关键属性 */
+    position: sticky;
+    top: 2rem; /* 在距离视口顶部 2rem 的位置开始“粘住” */
+
+    /* 样式美化 */
+    width: 250px;
+    height: fit-content; /* 确保侧边栏的高度自适应内容 */
+    background-color: #f7f7f7;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sticky-sidebar h3 {
+    margin-top: 0;
+}
+
+.sticky-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sticky-sidebar li {
+    margin-bottom: 0.5rem;
+}
+
+.sticky-sidebar a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.2s;
+}
+
+.sticky-sidebar a:hover {
+    color: #007bff;
+}

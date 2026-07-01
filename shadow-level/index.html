@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>阴影层级可视化 Demo</title>
+  <style>
+    body {
+      background: #f0f2f5;
+      font-family: Arial, sans-serif;
+      padding: 40px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .shadow-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 30px;
+    }
+    .shadow-box {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+    .shadow-box:hover {
+      transform: translateY(-4px);
+    }
+
+    /* 阴影层级 */
+    .level-0 {
+      box-shadow: none;
+    }
+    .level-1 {
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    }
+    .level-2 {
+      box-shadow: 0 4px 6px rgba(0,0,0,0.16);
+    }
+    .level-3 {
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .level-4 {
+      box-shadow: 0 16px 24px rgba(0,0,0,0.24);
+    }
+    .level-5 {
+      box-shadow: 0 24px 48px rgba(0,0,0,0.3);
+    }
+
+    .label {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .desc {
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>阴影层级可视化 Demo</h1>
+  <div class="shadow-container">
+    <div class="shadow-box level-0">
+      <div class="label">Level 0 🥚</div>
+      <div class="desc">无阴影</div>
+    </div>
+    <div class="shadow-box level-1">
+      <div class="label">Level 1 🐤</div>
+      <div class="desc">轻微悬浮</div>
+    </div>
+    <div class="shadow-box level-2">
+      <div class="label">Level 2 🦆</div>
+      <div class="desc">小卡片</div>
+    </div>
+    <div class="shadow-box level-3">
+      <div class="label">Level 3 🦅</div>
+      <div class="desc">浮动面板</div>
+    </div>
+    <div class="shadow-box level-4">
+      <div class="label">Level 4 🦄</div>
+      <div class="desc">Modal</div>
+    </div>
+    <div class="shadow-box level-5">
+      <div class="label">Level 5 🛸</div>
+      <div class="desc">全屏浮层</div>
+    </div>
+  </div>
+</body>
+</html>
