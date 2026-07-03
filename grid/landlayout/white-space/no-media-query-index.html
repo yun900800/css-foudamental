@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>无媒体查询的 Grid 自动留白</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f7;
+    }
+
+    /* 父容器：纯 Grid 响应式核心 */
+    .grid-container {
+      display: grid;
+      
+      /* 🌟 魔法行：不用写死 5 列，让浏览器自己算。
+         每列最小 150px，最大平分剩余空间 (1fr)。
+         auto-fit 会自动根据屏幕宽度，在一行里塞下尽可能多的列。 */
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      
+      /* 行高采用自动隐式轨道，随内容或格子增多自动往下长 */
+      grid-auto-rows: 150px;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* 黄色方块基础样式 */
+    .item {
+      background-color: #ffe600;
+      border-radius: 6px;
+    }
+
+    /* 🌟 核心技巧：利用控制“跨度(span)”，而不是写死“绝对网格线编号” */
+    
+    /* 长条：在大屏幕上横跨 2 列。如果屏幕太小（小到一排只能放1列），它会自动降级铺满 1 列 */
+    .item-5 { 
+      grid-column: span 2; 
+    }
+
+    /* 大方块：在大屏幕上横跨 2 列、纵跨 2 行。小屏幕上同理自动适应 */
+    .item-6 { 
+      grid-column: span 2; 
+      grid-row: span 2; 
+    }
+
+    /* 如果你希望某些特定的方块在大屏幕上产生巨大的跳跃（留白），
+       我们可以让它们在“自动流”中占更大的坑位，或者适当让它们跨列 */
+    .item-8 {
+      grid-column: span 1;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="grid-container">
+    <div class="item item-1"></div>
+    <div class="item item-2"></div>
+    <div class="item item-3"></div>
+    <div class="item item-4"></div>
+    <div class="item item-5"></div> <div class="item item-6"></div> <div class="item item-7"></div>
+    <div class="item item-8"></div>
+    <div class="item item-9"></div>
+  </div>
+
+</body>
+</html>
