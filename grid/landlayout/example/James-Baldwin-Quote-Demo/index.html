@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>James Baldwin Quote - Design to Web</title>
+  <style>
+    /* ==========================================================================
+       1. 基础重置与全局样式 (Reset & Global)
+       ========================================================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* ==========================================================================
+       2. 核心卡片布局 (Grid Container)
+       ========================================================================== */
+    .quote-card {
+      width: 100%;
+      max-width: 1000px; /* 限制最大宽度，保持设计稿高宽比 */
+      background-color: #c1932e; /* 经典的金色/芥末黄 */
+      
+      display: grid;
+      /* 使用 auto-fit 实现自动响应式，当单栏低于 400px 时自动折行 */
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      align-items: stretch; /* 确保左右两栏高度永远完美对齐 */
+      
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ==========================================================================
+       3. 左侧引言区域 (Text Column)
+       ========================================================================== */
+    .quote-content {
+      padding: 40px;
+      position: relative;
+      
+      /* 使用 Flexbox 处理内部文字垂直水平居中 */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* 精确还原设计稿的内嵌双边框效果 */
+    .quote-inner-border {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      border: 1px solid #7d5e18; /* 内层细线 */
+      outline: 3px solid #7d5e18; /* 外层粗线 */
+      outline-offset: 4px; /* 两条线之间的间距 */
+      pointer-events: none; /* 确保不影响文字选中 */
+    }
+
+    /* 引言文本样式 */
+    .quote-text {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-style: italic;
+      color: #ffffff;
+      line-height: 1.6;
+      /* 使用 clamp 实现流体字号：最小 18px，在大屏上随窗口缩放，最大 26px */
+      font-size: clamp(18px, 2.2vw, 26px);
+      max-width: 85%;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 作者名字样式 */
+    .quote-author {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 500;
+      color: #ffffff;
+      text-transform: uppercase; /* 全大写 */
+      letter-spacing: 0.2em; /* 字间距加宽，更有现代高级感 */
+      font-size: clamp(14px, 1.2vw, 16px);
+    }
+
+    /* ==========================================================================
+       4. 右侧图片区域 (Media Column)
+       ========================================================================== */
+    .quote-media {
+      width: 100%;
+      height: 100%;
+      min-height: 350px; /* 给移动端单栏时留出足够的图片高度 */
+    }
+
+    .quote-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* 核心：保证图片比例不变形的前提下裁切铺满 */
+      display: block;
+    }
+
+    /* ==========================================================================
+       5. 移动端小屏特殊处理 (Responsive Breakpoint)
+       ========================================================================== */
+    @media (max-width: 840px) {
+      .quote-card {
+        grid-template-columns: 1fr; /* 强制单栏排列 */
+      }
+      
+      .quote-content {
+        padding: 60px 30px; /* 移动端适当微调边距 */
+      }
+      
+      .quote-text {
+        max-width: 100%; /* 移动端文字可铺得更满一些 */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 语义化标签：使用 figure 包裹引言与媒体内容 -->
+  <figure class="quote-card">
+    
+    <!-- 左侧内容 -->
+    <div class="quote-content">
+      <!-- 装饰性的双重内边框 -->
+      <div class="quote-inner-border"></div>
+      
+      <blockquote class="quote-text">
+        <p>“You write in order to change the world, knowing perfectly well that you probably can’t. But the world changes according to the way people see it, and if you alter, even but a millimeter the way people look at reality, then you can change it.”</p>
+      </blockquote>
+      
+      <figcaption class="quote-author">James Baldwin</figcaption>
+    </div>
+
+    <!-- 右侧媒体 -->
+    <div class="quote-media">
+      <!-- 占位图使用了原图的高清相似裁剪版，你可以替换为你本地的 james-baldwin.jpg -->
+      <img src="media/01-002/james-baldwin-photographed-in-saint-paul-de-vence_france_late-1970s_-copyright-dmitri-kasterine.jpg" alt="James Baldwin, sitting sideways in a chair, looking soulful.">
+    </div>
+
+  </figure>
+
+</body>
+</html>

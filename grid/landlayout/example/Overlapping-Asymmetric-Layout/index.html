@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打破格子的重叠布局 - CSS Grid 实战</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 5vw;
+            background-color: #f5f5f7;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* ==========================================================================
+           1. 父容器：定义 5列 x 4行 的显式网格舞台
+           ========================================================================== */
+        .product-card {
+            display: grid;
+            /* 5列：两侧留出部分，中间平分 */
+            grid-template-columns: 40px 1fr 1fr 1fr 40px;
+            /* 4行：行高由内容和 fr 共同决定 */
+            grid-template-rows: auto 1fr 1fr auto;
+            
+            width: 100%;
+            max-width: 600px;
+            /* 卡片底色改为与 info 同色，即使圆角处有任何缝隙也只露淡红，不露鲜红 */
+            background: rgb(253, 232, 232);
+            border-radius: 16px;
+            /* clip-path 比 border-radius 大 2px（18px vs 16px），
+               作为安全余量消除亚像素渲染的微量锯齿缝隙，
+               完美解决底层图片鲜红色在圆角处渗出的问题 */
+            clip-path: inset(0 round 18px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            /* 隐藏由于右上角旋转可能溢出的装饰元素 */
+            overflow: hidden; 
+        }
+
+        /* ==========================================================================
+           2. 演员站位
+           ========================================================================== */
+        
+        /* 元素 A：商品大图（几乎占满，作为背景垫底） */
+        .product-image {
+            /* 占据从列线 1 到 6（全部 5 列） */
+            grid-column: 1 / 6;
+            /* 占据从行线 1 到 5（全部 4 行） */
+            grid-row: 1 / 5;
+            
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            /* 降低层级，让它在最下面 */
+            z-index: 1; 
+            /* 注意：不要给图片自己加 border-radius，
+               圆角交给卡片的 overflow:hidden 统一裁切，
+               否则两层圆角叠加可能在角落产生亚像素红边 */
+        }
+
+        /* 元素 B：左下角半透明文字介绍 */
+        .product-info {
+            /* 站在线 1 到 4 之间（占据左侧 3 个格子宽度） */
+            grid-column: 1 / 4;
+            /* 站在线 3 到 5 之间（底部） */
+            grid-row: 3 / 5;
+            
+            /* 拔高层级，压在图片上方 */
+            z-index: 2; 
+            
+            /* 视觉样式 */
+            /* background: rgba(255, 255, 255, 0.85); */
+            background: rgb(253, 232, 232); /* 完全不透明，底层颜色绝不会透出 */
+            /* 现代磨砂玻璃效果 */
+            backdrop-filter: blur(10px); 
+            padding: 24px;
+            /* 仅给右上角圆角，避免自身圆角在角落挖出缺口露出底层红色；
+               底部交由父级卡片 clip-path 统一裁切 16px 圆角 */
+            border-radius: 0 16px 0 0;
+            margin-top: 20px; /* 与上方留出一点呼吸感 */
+        }
+
+        .product-info h3 { margin: 0 0 8px 0; font-size: 1.4rem; color: #111; }
+        .product-info p { margin: 0; font-size: 0.9rem; color: #555; line-height: 1.5; }
+
+        /* 元素 C：右上角斜向装饰元素 */
+        .badge-decorator {
+            /* 站在线 4 到 6 之间（右侧边缘） */
+            grid-column: 4 / 6;
+            /* 站在线 1 到 3 之间（顶部） */
+            grid-row: 1 / 3;
+            
+            z-index: 2;
+            
+            /* 自身布局与旋转：以自身中心为原点旋转 45 度 */
+            justify-self: center;
+            align-self: center;
+            transform: rotate(45deg) translate(20px, -20px);
+            
+            /* 视觉样式 */
+            background: #fcc0bd;
+            color: white;
+            padding: 8px 40px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(255,59,48,0.3);
+            white-space: nowrap;
+        }
+
+        .product-footer {
+            /* 站在线 4 到 6 之间（右侧边缘） */
+            grid-column: 4 / 5;
+            /* 站在线 1 到 3 之间（顶部） */
+            grid-row: 4 / 5;
+            z-index: 2;
+            /* 提高不透明度，避免底层颜色透出形成扎眼接缝 */
+            background: rgb(253, 232, 232);
+            backdrop-filter: blur(10px); 
+            padding: 8px 8px 8px 0;
+            border-radius: 0 8px 0 0; /* 右上角圆角 */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="product-card">
+        <img class="product-image" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" alt="Premium Sneakers">
+        
+        <div class="badge-decorator">NEW ARRIVAL</div>
+        
+        <div class="product-info">
+            <h3>极客先锋系列</h3>
+            <p>融合现代空气动力学设计与原生态材质感知，为每一次探索提供不可自拔的舒适韧性。</p>
+        </div>
+        <div class="product-footer">开启您的先锋</div>
+    </div>
+
+</body>
+</html>
