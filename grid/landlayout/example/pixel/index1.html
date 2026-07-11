@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixel The Kitten - Graphic Layout</title>
+  <style>
+    /* ==========================================================================
+       1. 初始化与全局样式
+       ========================================================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f0f0f0;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* 外层大卡片容器 */
+    .gallery-card {
+      width: 100%;
+      max-width: 900px;
+      background-color: #000000;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      overflow: hidden; /* 切掉左右两侧因斜切溢出的三角形 */
+    }
+
+    /* ==========================================================================
+       2. 上方图片网格区 - 移动端优先模式（默认单栏无斜切）
+       ========================================================================== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      background-color: #ffffff; /* 图片之间的白色缝隙颜色 */
+    }
+
+    .gallery-item {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ==========================================================================
+       3. 下方黑色文本区与纯 CSS 斑马条纹
+       ========================================================================== */
+    .gallery-info {
+      background-color: #000000;
+      color: #ffffff;
+      padding: 50px 40px 40px;
+      position: relative;
+    }
+
+    /* 核心魔法：使用纯 CSS 渐变绘制黑白斜条纹装饰带，无任何实体修饰标签 */
+    .gallery-info::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 16px; /* 条纹带的视觉高度 */
+      background: repeating-linear-gradient(
+        45deg,
+        #ffffff,
+        #ffffff 8px,
+        #000000 8px,
+        #000000 16px
+      );
+    }
+
+    /* 文字排版：全大写、粗体与高字间距的瑞士国际风格 */
+    .gallery-title {
+      font-weight: 900;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .gallery-subtitle {
+      font-weight: 400;
+      font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+      letter-spacing: 0.15em; /* 拉开字距，产生呼吸感 */
+      color: #e0e0e0;
+    }
+
+    /* ==========================================================================
+       4. 专家级媒体查询：大屏激活斜切魔术 (Desktop Layout)
+       ========================================================================== */
+    @media (min-width: 768px) {
+      /* 切换为等分三栏 */
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px; /* 加宽大屏下的白色间隙 */
+        height: 480px; /* 锁死大屏下的图片区域高度 */
+        padding: 0 30px; /* 两边留出余量，防止最外侧的小猫脸切得太狠 */
+      }
+
+      .gallery-item {
+        height: 100%; /* 让包裹框撑满网格高度 */
+        /* 核心步骤 1：让整个图片外框水平向左斜切 -11 度 */
+        transform: skewX(-11deg); 
+      }
+
+      .gallery-item img {
+        /* 核心步骤 2：让里面的图片反向倾斜 11 度（矫正猫咪，使其不发生扭曲变形） */
+        /* 同时 scale(1.3) 放大图片，完美覆盖因为斜切露出的四角白边 */
+        transform: skewX(11deg) scale(1.3); 
+        transition: transform 0.5s ease; /* 顺手加个优雅的微悬停效果 */
+      }
+
+      /* 细节艺术指导：中间和右边的猫咪稍微往右微调，避开被切开的斜线 */
+      .gallery-grid .gallery-item:nth-child(2) img {
+        object-position: 55% 50%;
+      }
+      .gallery-grid .gallery-item:nth-child(3) img {
+        object-position: 60% 50%;
+      }
+
+      /* 鼠标悬浮小彩蛋：照片在斜切框里微微晃动 */
+      .gallery-item:hover img {
+        transform: skewX(11deg) scale(1.35);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 用语义化的 section 表达独立的画廊卡片 -->
+  <section class="gallery-card">
+    
+    <!-- 上方斜切图片网格区 -->
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <!-- 占位图选用了 3 张不同姿态的高清猫咪图 -->
+        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=600" alt="Pixel the kitten lying upside down">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&q=80&w=600" alt="Pixel the kitten sitting and staring forward">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&q=80&w=600" alt="Pixel the kitten sleeping curled up">
+      </div>
+    </div>
+
+    <!-- 下方黑色内容区（条纹已通过 ::before 虚拟节点织入） -->
+    <footer class="gallery-info">
+      <h2 class="gallery-title">PIXEL THE KITTEN</h2>
+      <p class="gallery-subtitle">LIKES LAYING THINGS OUT ON A GRID</p>
+    </footer>
+
+  </section>
+
+</body>
+</html>

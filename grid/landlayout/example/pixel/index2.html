@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixel the Kitten — 融合版布局</title>
+  <style>
+    /* ============================================================
+       1. Reset & Base
+       ============================================================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Avenir, Helvetica, Arial, sans-serif;
+      background: #777;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+    }
+
+    /* ============================================================
+       2. Main Card — 白色网格容器
+       ============================================================ */
+    main {
+      display: grid;
+      max-width: 960px;
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    /* ============================================================
+       3. Image Zone — 移动优先（单列堆叠，无斜切）
+       ============================================================ */
+    figure {
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 12px;
+      background: #fff;
+    }
+
+    figure img {
+      width: 100%;
+      max-height: 340px;
+      object-fit: cover;
+      display: block;
+      vertical-align: bottom;
+      transition: transform 0.45s ease, filter 0.45s ease;
+    }
+
+    /* ============================================================
+       4. Text Zone — 黑色底部 + 纯 CSS 条纹
+       ============================================================ */
+    header {
+      background: #000;
+      color: #fff;
+      padding: 2.2rem 2rem 1.8rem;
+      position: relative;
+    }
+
+    /* 纯 CSS 渐变条纹 — 替代 Jen Simmons 的 GIF border-image */
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 24px;
+      background: repeating-linear-gradient(
+        45deg,
+        #fff 0px,
+        #fff 12px,
+        #000 12px,
+        #000 24px
+      );
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 4vw, 2.6rem);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 900;
+      margin-bottom: 2px;
+    }
+
+    h2 {
+      font-size: clamp(0.85rem, 2vw, 1.2rem);
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #ccc;
+    }
+
+    /* ============================================================
+       5. Desktop Layout — 三栏重叠 + clip-path 斜向下
+       ============================================================ */
+    @media (min-width: 768px) {
+      body {
+        padding: 40px;
+      }
+
+      figure {
+        grid-template-columns: repeat(10, 1fr);
+        gap: 1rem;        /* ⭐ gap 露出白色背景，形成斜向分割线 */
+        padding: 0;
+      }
+
+      figure img {
+        grid-column: span 4;
+        max-height: 400px;
+
+        /* ⭐ clip-path 平行四边形 — 斜向下，匹配设计稿 */
+        clip-path: polygon(0% 0%, 75% 0%, 100% 100%, 25% 100%);
+      }
+
+      /* 三图重叠：每张图从前一张的尾部开始，形成交叠 */
+      figure img:nth-child(1) {
+        grid-column: 1 / 5;
+        grid-row: 1;
+      }
+      figure img:nth-child(2) {
+        grid-column: 4 / 8;
+        grid-row: 1;
+      }
+      figure img:nth-child(3) {
+        grid-column: 7 / 11;
+        grid-row: 1;
+      }
+
+      /* 微调猫咪焦点，保护面部不被 clip-path 切到 */
+      figure img:nth-child(2) {
+        object-position: 55% 50%;
+      }
+      figure img:nth-child(3) {
+        object-position: 60% 50%;
+      }
+
+      /* ⭐ 悬停效果 — 图片区整体变暗，悬浮的图片亮起放大 */
+      figure:hover img {
+        filter: brightness(0.8);
+      }
+      figure img:hover {
+        transform: scale(1.06);
+        filter: brightness(1.1);
+        z-index: 2;
+        position: relative;
+      }
+
+      header {
+        padding: 3rem 3.2rem 2.4rem;
+      }
+    }
+
+    /* ============================================================
+       6. 小屏微调
+       ============================================================ */
+    @media (max-width: 480px) {
+      figure {
+        gap: 4px;
+        padding: 8px;
+      }
+      header {
+        padding: 1.8rem 1.2rem 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════════════════════
+       语义化结构 (Jen Simmons 风格)
+       <figure> = 图片区  |  <header> = 文本区
+       CSS 用 grid-row 交换视觉顺序：先图后文
+       ════════════════════════════════════════════════════════════ -->
+  <main>
+    <figure>
+      <img src="media/01-003/pixel1.jpg" alt="Pixel the kitten looking super cute">
+      <img src="media/01-003/pixel2.jpg" alt="Pixel is grey, soft, and still a baby kitten">
+      <img src="media/01-003/pixel3.jpg" alt="Pixel rolled onto his back, sleeping peacefully">
+    </figure>
+    <header>
+      <h1>Pixel the Kitten</h1>
+      <h2>Likes laying things out on a grid</h2>
+    </header>
+  </main>
+
+</body>
+</html>
