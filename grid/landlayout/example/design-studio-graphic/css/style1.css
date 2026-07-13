@@ -1,0 +1,99 @@
+/* ==========================================================================
+   1. 基础重置与全屏黄色背景
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #fbf59a; 
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  display: grid;
+  place-items: center; 
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+/* ==========================================================================
+   2. 扁平化的海报网格舞台 (Poster Stage)
+   ========================================================================== */
+.poster-stage {
+  position: relative; /* 允许子元素直接基于它进行绝对定位 */
+  width: 100%;
+  max-width: 600px;   /* 整个艺术海报的宽度直接由外层控制 */
+}
+
+/* 核心图片：直接撑满舞台 */
+.hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+   3. 直属子元素的精准层叠 (Typography Alignment)
+   ========================================================================== */
+.brand-title {
+  position: absolute;
+  /* 直接相对于大舞台定位，去掉了原先包裹层的物理间距干扰 */
+  right: 12%; 
+  bottom: 8%; 
+  z-index: 2; 
+  
+  display: flex;
+  align-items: flex-start;
+  color: #0c0d11; 
+  font-size: clamp(20px, 3.5vw, 32px); 
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* 基础纵向排列 */
+.txt-vertical {
+  writing-mode: vertical-rl;
+  text-transform: uppercase; 
+}
+
+/* 中间 “—— Design” 逆时针整体旋转 90 度 */
+.txt-rotated {
+  white-space: nowrap;
+  transform: rotate(-90deg) translateX(-100%);
+  transform-origin: left top;
+  margin-right: calc(-1 * clamp(20px, 3.5vw, 32px)); 
+  margin-left: 6px;
+  font-weight: 900;
+}
+
+/* ==========================================================================
+   4. 直属子元素：右下角微型版权文本
+   ========================================================================== */
+.meta-footer {
+  position: absolute;
+  right: 12%;       /* 与上方大字左对齐基准一致 */
+  bottom: -4%;      /* 往下错开，挂在舞台最下方 */
+  z-index: 2;
+
+  color: #cc2b20; 
+  font-size: clamp(9px, 1.2vw, 11px);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================================================
+   5. 移动端响应式极致微调
+   ========================================================================== */
+@media (max-width: 500px) {
+  .brand-title {
+    right: 6%;
+    bottom: 12%;
+  }
+  .meta-footer {
+    right: 6%;
+    bottom: -2%;
+  }
+}

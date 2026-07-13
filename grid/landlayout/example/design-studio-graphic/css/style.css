@@ -1,0 +1,122 @@
+/* ==========================================================================
+   1. 基础重置与全屏黄色背景
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* 完美精准提取设计稿的淡黄色背景 */
+  background-color: #feee75; 
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  display: grid;
+  place-items: center; /* 让整张海报在屏幕正中央高大上地展示 */
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+/* ==========================================================================
+   2. 海报核心舞台（艺术图形 + 文字的绝对定位锚点）
+   ========================================================================== */
+.poster-container {
+  width: 100%;
+  max-width: 900px; /* 限制大屏下的最大宽度 */
+  display: flex;
+  justify-content: flex-end; /* 顺应设计稿：整体视觉重心偏右 */
+}
+
+.art-stage {
+  position: relative; /* 关键：为文字提供定位基准线 */
+  width: 100%;
+  max-width: 600px;  /* 限制“8”字图片的最大渲染尺寸 */
+}
+
+/* 艺术图形容器 */
+.graphic-wrapper {
+  width: 100%;
+}
+
+.hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+   3. 高级错层排版（Typography Layering）
+   ========================================================================== */
+.typography-group {
+  position: absolute;
+  /* 核心魔法：通过百分比和绝对定位，让文字无论屏幕怎么缩放，都精准贴在8字右下角 */
+  right: 12%; 
+  bottom: -5%;
+  z-index: 10; /* 确保文字压在图片的叶子边缘上方 */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* 纵向文字大标题 */
+.brand-title {
+  display: flex;
+  align-items: flex-start;
+  /* 提取海报中近乎纯黑的深色 */
+  color: #0c0d11; 
+  font-size: clamp(20px, 3.5vw, 32px); /* 响应式字体：随屏幕大小优雅缩放 */
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 40px;
+}
+
+/* 基础纵向排列（字母不旋转，像方块字一样堆叠） */
+.txt-vertical {
+  writing-mode: vertical-rl;
+  text-transform: uppercase; /* 强制大写增强视觉张力 */
+}
+
+/* 💡 核心难点：中间 “—— Design” 逆时针整体旋转 90 度 */
+.txt-rotated {
+  white-space: nowrap;
+  transform: rotate(-90deg) translateX(-100%);
+  transform-origin: left top;
+  /* 修正因为旋转产生的物理文档流空隙 */
+  margin-right: calc(-1 * clamp(20px, 3.5vw, 32px)); 
+  margin-left: 6px;
+  font-weight: 900;
+}
+
+/* ==========================================================================
+   4. 右下角微型版权文本
+   ========================================================================== */
+.meta-footer {
+  color: #cc2b20; /* 提取设计稿红花中的暗红色，呼应整体配色 */
+  font-size: clamp(9px, 1.2vw, 11px);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  padding-left: 20px; /* 与上方的纵向大字形成优雅的错位微调 */
+}
+
+/* ==========================================================================
+   5. 移动端响应式极致优化
+   ========================================================================== */
+@media (max-width: 500px) {
+  body {
+    background-color: #fbf59a;
+    padding: 16px;
+  }
+  
+  /* 手机端适当放大字号或微调位置，防止文本掉出屏幕外 */
+  .typography-group {
+    right: 5%;
+    bottom: -8%;
+  }
+  
+  .meta-footer {
+    padding-left: 10px;
+  }
+}
