@@ -1,0 +1,28 @@
+/* =============================================
+   Design Tokens（共享变量）
+   由 style-guide.md 定义，所有 CSS 文件统一引用
+   ============================================= */
+:root {
+  /* Colors */
+  --color-card-bg: #f5ece1;
+  --color-white: hsl(0, 0%, 100%);
+  --color-slate-300: hsl(212, 45%, 89%);
+  --color-slate-500: hsl(216, 15%, 48%);
+  --color-slate-900: hsl(218, 44%, 22%);
+
+  /* Spacing */
+  --spacing-sm: 20px;
+  --spacing-lg: 30px;
+  --spacing-gap: 20px;
+
+  /* Border Radius */
+  --radius-md: 8px;
+
+  /* Typography */
+  --font-family: 'Outfit', sans-serif;
+  --font-size-body: 15px;
+
+  /* Layout */
+  --container-max-width: 1200px;
+  --container-padding: 20px;
+}

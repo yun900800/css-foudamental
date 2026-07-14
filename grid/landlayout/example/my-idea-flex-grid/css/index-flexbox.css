@@ -1,0 +1,34 @@
+/* =============================================
+   Flexbox 布局版本
+   共享变量请参见 variables.css
+   ============================================= */
+@import url('variables.css');
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--container-padding);
+}
+.flex-version {
+  display: flex;
+  flex-wrap: wrap; /* 💡 核心：允许折行 */
+  gap: var(--spacing-gap);
+}
+
+/* 基础卡片样式 */
+.flex-version .item {
+  background-color: var(--color-card-bg);
+  padding: var(--spacing-lg);
+  text-align: center;
+  border-radius: var(--radius-md);
+  box-sizing: border-box;
+}
+
+/* 💡 第一行 2 个元素：均分空间，各占 50% 并减去 gap 的物理占比 */
+.flex-version .item:nth-child(-n+2) {
+  flex: 1 1 calc((100% - var(--spacing-gap)) / 2);
+}
+
+/* 💡 第二行 3 个元素：均分空间，各占 33.33% 并减去两个 gap 的物理占比 */
+.flex-version .item:nth-child(n+3) {
+  flex: 1 1 calc((100% - (var(--spacing-gap) * 2)) / 3);
+}
