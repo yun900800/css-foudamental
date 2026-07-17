@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>极致丝滑 - 二次元横向全屏漫画阅读器</title>
+    <style>
+        /* ==========================================================================
+           1. 页面级复位：确保全屏无任何滚动条和边界溢出
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* 禁用系统默认的纵向滚动条 */
+            background-color: #111113; /* 深色暗黑模式，适合沉浸式阅读 */
+            color: #f5f5f7;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        /* ==========================================================================
+           2. 核心：横向滚动舞台（Grid + Snap）
+           ========================================================================== */
+        .comic-reader {
+            display: grid;
+            /* 显式声明一行，高度强行填满视口 */
+            grid-template-rows: 100vh;
+            /* 关键：超出范围的子页面全部向右自动无限平铺（隐式列） */
+            grid-auto-flow: column;
+            /* 关键：每一个隐式列的宽度，强制等于屏幕的 100% 宽度 */
+            grid-auto-columns: 100vw;
+            
+            width: 100vw;
+            height: 100vh;
+            
+            /* 开启横向物理滚动，隐藏纵向滚动 */
+            overflow-x: auto;
+            overflow-y: hidden;
+            
+            /* 严格开启横向物理吸附（Mandatory 代表强制对齐） */
+            scroll-snap-type: x mandatory;
+            
+            /* 平滑滚动手感优化 */
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            
+            /* 隐藏滚动条，保持全屏洁净 */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .comic-reader::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        /* ==========================================================================
+           3. 演员：单页漫画容器
+           ========================================================================== */
+        .comic-page {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            
+            /* 核心：滑动手势松开时，让当前页的左边界完美对齐容器左边界 */
+            scroll-snap-align: start;
+            /* 即使快速滑动，也强迫每次只翻一页，不至于滑飞 */
+            scroll-snap-stop: always; 
+            
+            overflow: hidden;
+        }
+
+        /* ==========================================================================
+           4. 视觉层设计（漫画图片的排版）
+           ========================================================================== */
+        
+        /* 漫画背景模糊：烘托二次元沉浸氛围 */
+        .page-bg-blur {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(40px) brightness(0.3); /* 深度模糊加暗，防止刺眼 */
+            transform: scale(1.1); /* 防止模糊后边缘白边 */
+            z-index: 1;
+        }
+
+        /* 漫画主体图片：居中显示，自适应缩放 */
+        .comic-image {
+            position: relative;
+            z-index: 2;
+            max-width: 100%;
+            max-height: 100vh;
+            object-fit: contain; /* 保证整张漫画完全显示出来，比例不失真 */
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+        }
+
+        /* 浮动标签：显示当前页数和基本信息 */
+        .page-info {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            pointer-events: none; /* 防止遮挡拖拽手势 */
+        }
+
+        /* 右下角小提示：暗示滑动 */
+        .swipe-hint {
+            position: absolute;
+            right: 24px;
+            bottom: 24px;
+            z-index: 10;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 滚动舞台 -->
+    <div class="comic-reader" id="reader">
+        
+        <!-- 第 1 页 -->
+        <div class="comic-page">
+            <!-- 模糊背景 -->
+            <div class="page-bg-blur" style="background-image: url('https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80');"></div>
+            <!-- 主图 -->
+            <img class="comic-image" src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80" alt="Comic Page 1">
+            
+            <div class="page-info">第 1 / 4 页</div>
+            <div class="swipe-hint">向右滑动翻页 ➔</div>
+        </div>
+
+        <!-- 第 2 页 -->
+        <div class="comic-page">
+            <div class="page-bg-blur" style="background-image: url('https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=800&q=80');"></div>
+            <img class="comic-image" src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=800&q=80" alt="Comic Page 2">
+            
+            <div class="page-info">第 2 / 4 页</div>
+        </div>
+
+        <!-- 第 3 页 -->
+        <div class="comic-page">
+            <div class="page-bg-blur" style="background-image: url('https://images.unsplash.com/photo-1618336753974-aae8e04506aa?auto=format&fit=crop&w=800&q=80');"></div>
+            <img class="comic-image" src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?auto=format&fit=crop&w=800&q=80" alt="Comic Page 3">
+            
+            <div class="page-info">第 3 / 4 页</div>
+        </div>
+
+        <!-- 第 4 页 -->
+        <div class="comic-page">
+            <div class="page-bg-blur" style="background-image: url('https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800&q=80');"></div>
+            <img class="comic-image" src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800&q=80" alt="Comic Page 4">
+            
+            <div class="page-info">第 4 / 4 页</div>
+        </div>
+
+    </div>
+
+    <!-- 
+       引入我们上一部分写的高性能鼠标拖拽 JS 补丁。
+       这样不管在手机触摸、触控板，还是桌面端直接用鼠标拖拽，全部完美通行！
+    -->
+    <script>
+        const reader = document.getElementById('reader');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        reader.addEventListener('mousedown', (e) => {
+            isDown = true;
+            reader.style.cursor = 'grabbing';
+            startX = e.pageX - reader.offsetLeft;
+            scrollLeft = reader.scrollLeft;
+            reader.style.scrollSnapType = 'none'; // 拖拽时临时关掉吸附
+            e.preventDefault(); 
+        });
+
+        reader.addEventListener('mouseleave', () => {
+            if (!isDown) return;
+            isDown = false;
+            reader.style.cursor = 'grab';
+            reader.style.scrollSnapType = 'x mandatory';
+        });
+
+        reader.addEventListener('mouseup', () => {
+            if (!isDown) return;
+            isDown = false;
+            reader.style.cursor = 'grab';
+            reader.style.scrollSnapType = 'x mandatory';
+        });
+
+        reader.addEventListener('mousemove', (e) => {
+            if(!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - reader.offsetLeft;
+            const walk = (x - startX) * 1.5; 
+            reader.scrollLeft = scrollLeft - walk;
+        });
+
+        // 键盘左右方向键翻页优化（高级细节）
+        window.addEventListener('keydown', (e) => {
+            const pageWidth = window.innerWidth;
+            if (e.key === 'ArrowRight') {
+                reader.scrollBy({ left: pageWidth, behavior: 'smooth' });
+            } else if (e.key === 'ArrowLeft') {
+                reader.scrollBy({ left: -pageWidth, behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>

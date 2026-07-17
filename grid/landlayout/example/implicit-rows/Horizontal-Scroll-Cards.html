@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>完美跨端丝滑横向滑动卡片</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f7;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .section-title {
+            padding: 0 20px;
+            margin: 0 0 16px 0;
+            font-size: 1.5rem;
+            color: #1d1d1f;
+        }
+
+        /* ==========================================================================
+           1. 滚动容器
+           ========================================================================== */
+        .card-slider {
+            display: grid;
+            grid-template-rows: 320px;
+            grid-auto-flow: column;
+            grid-auto-columns: calc(100vw - 76px);
+            gap: 16px;
+
+            overflow-x: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* IE and Edge */
+            
+            /* 
+               注意：在电脑端用鼠标拖拽时，强制吸附可能会产生“拉不动”的冲突感。
+               我们在 JS 中会动态处理。这里保持默认吸附，手机端体验极佳。
+            */
+            scroll-snap-type: x mandatory;
+            
+            padding: 10px 20px 20px 20px;
+            -webkit-overflow-scrolling: touch;
+            
+            /* 鼠标移上去时，显示“可抓取”的手势，暗示用户可以拖拽 */
+            cursor: grab;
+            user-select: none; /* 防止拖拽时误选中卡片内的文字和图片 */
+        }
+
+        .card-slider:active {
+            cursor: grabbing; /* 抓取中手势 */
+        }
+
+        .card-slider::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        /* ==========================================================================
+           2. 子卡片
+           ========================================================================== */
+        .card {
+            background: #ffffff;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            scroll-snap-align: start;
+            transition: transform 0.2s ease;
+            /* 阻止卡片内的图片被默认拖拽，否则会干扰我们的拖拽 JS */
+            pointer-events: auto;
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            pointer-events: none; /* 关键：防止图片拖拽时出现系统默认半透明缩略图 */
+        }
+
+        .card-content {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #86868b;
+            margin-bottom: 6px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin: 0 0 8px 0;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-price {
+            margin-top: auto;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ff3b30;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 class="section-title">今日推荐新锐好物</h2>
+
+    <div class="card-slider" id="js-slider">
+        
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80" alt="Product">
+            <div class="card-content">
+                <span class="card-category">声学科技</span>
+                <h3 class="card-title">降噪先锋 H1 无线头戴耳机</h3>
+                <span class="card-price">¥ 1,299</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80" alt="Product">
+            <div class="card-content">
+                <span class="card-category">智能穿戴</span>
+                <h3 class="card-title">极简主义 智能陶瓷腕表</h3>
+                <span class="card-price">¥ 1,899</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=400&q=80" alt="Product">
+            <div class="card-content">
+                <span class="card-category">复古机能</span>
+                <h3 class="card-title">全景偏光 太阳镜二代</h3>
+                <span class="card-price">¥ 599</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?auto=format&fit=crop&w=400&q=80" alt="Product">
+            <div class="card-content">
+                <span class="card-category">灵感办公</span>
+                <h3 class="card-title">胡胡桃木 极简桌面整理收纳盒</h3>
+                <span class="card-price">¥ 269</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ==========================================================================
+         3. 跨端鼠标拖拽物理补丁 (JS)
+         ========================================================================== -->
+    <script>
+        const slider = document.getElementById('js-slider');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        // 鼠标按下
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.add('active');
+            // 获取鼠标按下的初始 X 坐标
+            startX = e.pageX - slider.offsetLeft;
+            // 获取容器当前的滚动距离
+            scrollLeft = slider.scrollLeft;
+            
+            // 临时关闭 CSS 吸附效果，避免拖拽时有“橡皮筋往回拉”的顿挫感
+            slider.style.scrollSnapType = 'none';
+        });
+
+        // 鼠标离开容器范围
+        slider.addEventListener('mouseleave', () => {
+            if (!isDown) return;
+            isDown = false;
+            // 恢复 CSS 物理吸附效果
+            slider.style.scrollSnapType = 'x mandatory';
+        });
+
+        // 鼠标松开
+        slider.addEventListener('mouseup', () => {
+            if (!isDown) return;
+            isDown = false;
+            // 恢复 CSS 物理吸附效果
+            slider.style.scrollSnapType = 'x mandatory';
+        });
+
+        // 鼠标移动
+        slider.addEventListener('mousemove', (e) => {
+            if(!isDown) return;
+            e.preventDefault(); // 阻止浏览器默认的选择、拖动行为
+            
+            // 计算鼠标当前的 X 坐标
+            const x = e.pageX - slider.offsetLeft;
+            // 计算鼠标移动的物理位移（乘以 1.5 增加拖拽灵敏度，手感更爽快）
+            const walk = (x - startX) * 1.5; 
+            
+            // 实时更新容器的滚动位置
+            slider.scrollLeft = scrollLeft - walk;
+        });
+    </script>
+</body>
+</html>
